@@ -1,6 +1,6 @@
 // One place for everything a rebrand touches. Text nodes with data-brand="key" fill from here.
 window.SITE = {
-  name: "Murmur",
+  name: "TypeVoice",
   tagline: "Local dictation for Mac",
   company: "Priyam Ventures",
   email: "support@REPLACE-ME.example",     // support + privacy contact
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const a of document.querySelectorAll("a[data-mail]")) { a.href = "mailto:" + SITE.email; a.textContent = SITE.email; }
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
   for (const a of document.querySelectorAll("a[data-store]")) a.href = SITE.appStoreURL;
-  document.title = document.title.replace("Murmur", SITE.name);
+  document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   // Speech as it sounds: each word slightly tilted, offset and wobbling at its own pace.
   const clumsy = (text) => text.trim().split(/\s+/).map((w, i) => {

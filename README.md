@@ -19,7 +19,7 @@ when the domain exists, replace it everywhere in one go:
 
     grep -rl "REPLACE-ME.example" Site | xargs sed -i '' 's|https://REPLACE-ME.example|https://your.domain|g'
 
-On a rebrand, also replace "Murmur" in the `<title>`, `og:*` and JSON-LD tags, and re-render
+On a rebrand, also replace "TypeVoice" in the `<title>`, `og:*` and JSON-LD tags, and re-render
 `assets/og.png` (1200×630, the social preview). The display font is self-hosted in
 `assets/fonts/` (SIL OFL) so the site makes no third-party requests, which the privacy
 policy promises.
