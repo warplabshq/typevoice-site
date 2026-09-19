@@ -54,11 +54,45 @@ h3 { font-size: 17px; font-weight: 600; }
 .sub { color: var(--faint); font-size: 13px; margin: var(--s2) 0 0; }
 
 /* ---------- hero ---------- */
-.hero { text-align: center; padding: var(--s6) 0 var(--s5); overflow: visible; }
+.hero { position: relative; text-align: center; min-height: min(86vh, 820px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--s5) 0 var(--s4); }
+.hero h1, .hero .lede, .hero .cta, .hero .sub, .hero .cue { position: relative; z-index: 2; }
+.hero .sub { margin-top: 18px; line-height: 1.7; } .hero .sub2 { text-decoration: underline; text-decoration-color: var(--line2); text-underline-offset: 3px; }
+.cue { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line2); color: var(--dim); margin-top: 26px; transition: color .2s, border-color .2s, transform .3s; }
+.cue:hover { color: var(--text); border-color: var(--text); transform: translateY(2px); text-decoration: none; }
+/* Floating cards: what the app does, scattered around the headline like things on a desk. */
+/* The field spans the whole viewport so the cards sit out at the edges, away from the words. */
+.floats { position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; pointer-events: none; z-index: 1; }
+.fl { position: absolute; left: var(--x); top: var(--y); transform: rotate(var(--r)); animation: drift 7s ease-in-out var(--dl) infinite alternate; will-change: transform; }
+@keyframes drift { from { transform: rotate(var(--r)) translateY(-5px); } to { transform: rotate(var(--r)) translateY(6px); } }
+.fl.card { background: var(--card); border: 1px solid var(--line2); border-radius: 14px; padding: 12px 14px; box-shadow: 0 24px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04); color: var(--text); text-align: left; }
+.fl.typed { width: 230px; } .fl.typed .app { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--faint); font-weight: 600; margin-bottom: 6px; }
+.fl.typed .app i { width: 8px; height: 8px; border-radius: 3px; background: #4a154b; box-shadow: inset 0 0 0 2px #e01e5a; }
+.fl.typed p { margin: 0; font-size: 14px; line-height: 1.4; } .fl.typed .caret { display: inline-block; width: 1.5px; height: 14px; background: var(--text); margin-left: 2px; vertical-align: -2px; animation: blink 1s steps(2) infinite; }
+@keyframes blink { to { opacity: 0; } }
+.fl.pillfl .pill { height: 56px; padding: 0 18px; border: 0; background: #000; border-radius: 999px; display: flex; align-items: center; box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.09), 0 -2px 6px rgba(255,255,255,.14), 0 2px 6px rgba(255,255,255,.10); }
+.fl.stat { width: 168px; } .fl.stat small { display: block; font-size: 11px; color: var(--faint); font-weight: 600; } .fl.stat b { font-size: 24px; color: var(--c-green); letter-spacing: -.02em; font-variant-numeric: tabular-nums; white-space: nowrap; } .fl.stat span { font-size: 11px; color: var(--dim); margin-left: 6px; white-space: nowrap; }
+.fl.stat .bars { display: flex; align-items: center; gap: 2px; height: 22px; margin-top: 6px; } .fl.stat .bars i { width: 2.5px; border-radius: 2px; background: var(--c-green); opacity: .85; animation: mbar 1.6s ease-in-out infinite alternate; }
+.fl.stat .bars i:nth-child(1) { --h: 4.5px } .fl.stat .bars i:nth-child(2) { --h: 8.5px; animation-delay: -.2s } .fl.stat .bars i:nth-child(3) { --h: 14.7px; animation-delay: -.4s } .fl.stat .bars i:nth-child(4) { --h: 21px; animation-delay: -.6s } .fl.stat .bars i:nth-child(5) { --h: 13px; animation-delay: -.8s } .fl.stat .bars i:nth-child(6) { --h: 17.5px; animation-delay: -1s } .fl.stat .bars i:nth-child(7) { --h: 9.6px; animation-delay: -1.2s } .fl.stat .bars i:nth-child(8) { --h: 5.7px; animation-delay: -1.4s }
+.fl.stat .bars i { height: var(--h); }
+.fl.keys { display: flex; align-items: center; gap: 6px; } .fl.keys kbd { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(180deg, #2a2a30, #17171b); border: 1px solid var(--line2); box-shadow: 0 4px 0 #0a0a0c, 0 18px 40px rgba(0,0,0,.45); font: 600 16px -apple-system, system-ui, sans-serif; color: var(--text); }
+.fl.keys span { font-size: 12px; color: var(--dim); margin-left: 6px; }
+.fl.note { width: 128px; padding: 12px 14px; border-radius: 6px; background: #f2d55c; color: #2a2410; box-shadow: 0 20px 50px rgba(0,0,0,.45); font: 500 13px/1.5 -apple-system, system-ui, sans-serif; text-align: left; }
+.fl.note b { display: block; font-weight: 700; margin-bottom: 2px; } .fl.note span { display: block; } .fl.note span::before { content: "– "; opacity: .6; }
+.fl.fix { width: 200px; } .fl.fix s { display: block; font-size: 12px; color: var(--faint); text-decoration-color: rgba(255,255,255,.35); font-style: italic; } .fl.fix b { display: block; font-size: 14px; margin-top: 4px; }
+.fl.dict small { display: block; font-size: 11px; color: var(--faint); font-weight: 600; } .fl.dict b { font-size: 15px; } .fl.dict em { display: block; font-size: 11px; color: var(--dim); font-style: normal; margin-top: 2px; }
+.fl.lockc { display: flex; align-items: center; gap: 8px; color: var(--c-green); } .fl.lockc b { color: var(--text); font-size: 14px; } .fl.lockc span { font-size: 12px; color: var(--dim); }
+.fl.speed b { font-size: 22px; color: var(--c-blue); letter-spacing: -.02em; } .fl.speed span { display: block; font-size: 11px; color: var(--dim); }
+.fl.chipfl .chip { display: inline-block; background: #fff; color: #111; border-radius: 999px; padding: 7px 12px; font: 600 12px -apple-system, system-ui, sans-serif; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+@media (prefers-color-scheme: light) { .fl.card { box-shadow: 0 24px 60px rgba(0,0,0,.14); } .fl.keys kbd { background: linear-gradient(180deg, #fff, #ececf0); box-shadow: 0 4px 0 #c9c9d0, 0 18px 40px rgba(0,0,0,.14); } .fl.note { box-shadow: 0 20px 50px rgba(0,0,0,.16); } .fl.chipfl .chip { background: #111; color: #fff; } .fl.typed .caret { background: var(--text); } }
+@media (max-width: 1100px) { .fl.dict, .fl.speed, .fl.chipfl { display: none; } }
+@media (max-width: 900px) { .floats { display: none; } .hero { min-height: 0; padding: var(--s6) 0 var(--s4); } }
+@media (prefers-reduced-motion: reduce) { .fl { animation: none; } .fl.typed .caret { animation: none; } }
+/* The tape band under the hero. */
+.tapeband { padding: 0 0 var(--s4); }
 /* Ticker tape: what you said flows in from the left, what got typed rolls out on a ribbon. */
 :root { --ribbon-bg: #f4f4f6; --ribbon-fg: #111114; }
 @media (prefers-color-scheme: light) { :root { --ribbon-bg: #111114; --ribbon-fg: #f4f4f6; } }
-.tape { position: relative; contain: layout paint; width: 112vw; margin: var(--s6) 0 var(--s3) calc(50% - 56vw); height: 120px; transform: rotate(-2deg); pointer-events: none; }
+.tape { position: relative; contain: layout paint; width: 112vw; margin: var(--s2) 0 var(--s3) calc(50% - 56vw); height: 120px; transform: rotate(-2deg); pointer-events: none; }
 .tape-raw, .tape-clean { position: absolute; top: 40px; height: 44px; overflow: hidden; display: flex; align-items: center; }
 .tape-raw { left: 0; right: 50%; -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 42%, #000); mask-image: linear-gradient(90deg, transparent 8%, #000 42%, #000); }
 .tape-clean { left: 50%; right: 0; background: var(--ribbon-bg); box-shadow: 0 10px 30px rgba(0,0,0,.25);
