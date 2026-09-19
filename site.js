@@ -58,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(frame);
   }
   startBars(document.getElementById("wave2"), { w: 200, h: 48, n: 24, bw: 2.8, gap: 2.6 });
-  startBars(document.getElementById("wave-fl"), { w: 150, h: 36, n: 18, bw: 2.5, gap: 2 });
   const c = document.getElementById("wave");
   if (c) {
     startBars(c, { w: 236, h: 56, n: 26, bw: 3, gap: 3 });
