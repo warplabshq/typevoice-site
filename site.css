@@ -342,3 +342,10 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
   .ghost, .price-right .ghost.small, .faq summary, footer .fcols a { padding-top: 10px; padding-bottom: 10px; }
   .ghost { display: inline-flex; align-items: center; min-height: 44px; }
 }
+
+/* Changelog */
+.changelog article { margin: 34px 0; padding-top: 26px; border-top: 1px solid var(--line); }
+.changelog article:first-of-type { border-top: 0; padding-top: 0; }
+.changelog h2 { display: flex; align-items: baseline; gap: 12px; font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 30px; margin: 0 0 6px; }
+.changelog h2 small { font-family: inherit; font-size: 15px; color: var(--faint); font-style: italic; }
+.changelog li { margin: 6px 0; }

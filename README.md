@@ -8,6 +8,7 @@ Sparkle appcast.
 - `privacy.html` — privacy policy
 - `terms.html` — terms of use (purchase, refunds)
 - `eula.html` — the license agreement for the app
+- `changelog.html` — what's new per release (mirror the top entry of the app repo's `CHANGELOG.md`)
 - `thanks.html` — Dodo's return URL after checkout; shows the key from `?license_key=…` and
   offers `typevoice://activate?key=…`, which activates the app in one click
 - `appcast.xml` — Sparkle feed; replaced by `dist/appcast.xml` from `make release` in the app repo
