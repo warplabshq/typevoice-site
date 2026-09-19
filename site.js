@@ -9,7 +9,7 @@ window.SITE = {
   checkoutURL: "https://checkout.dodopayments.com/buy/REPLACE-ME",   // Dodo Payments product link
   updated: "September 20, 2026",
   price: "$79",
-  priceNote: "once, after 3 free days",
+  priceNote: "once, after 7 free days",
   refundDays: "14",
   macLimit: "3",            // activations limit set on the Dodo license key entitlement
   jurisdiction: "India",
