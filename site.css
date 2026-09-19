@@ -207,6 +207,7 @@ h3 { font-size: 17px; font-weight: 600; }
 .price-right { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; border-left: 1px solid var(--line); padding-left: var(--s4); }
 .price-tag span { display: block; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; } .price-tag small { color: var(--dim); }
 .price-right .faint { color: var(--faint); font-size: 12px; max-width: 220px; }
+.price-right .ghost.small { font-size: 14px; margin-top: -6px; }
 
 /* ---------- privacy + faq + final ---------- */
 .priv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s2); margin-top: var(--s4); }
@@ -327,3 +328,10 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
   .flow .fly.wave { animation-name: fly1v; } .flow .fly.rough { animation-name: fly2v; } .flow .fly.clean { animation-name: fly3v; }
   .flow .out { flex-direction: column; align-items: center; gap: 10px; } .flow .out .wire { flex: 0 0 auto; width: 60px; height: 64px; min-width: 0; margin-right: 0; } .flow .out .barrier { left: 50%; }
   .flow .out .wire::before { left: 50%; right: auto; top: 0; bottom: 0; border-top: 0; border-left: 1.5px dashed var(--line2); } }
+
+/* Thank-you page (Dodo return URL). */
+.thanks .key { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 14px 0 18px; }
+.thanks .key code { font-size: 20px; letter-spacing: .04em; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+.thanks .copy { height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; }
+.thanks .copy:hover { border-color: var(--text); }
+.thanks .cta-row { justify-content: flex-start; margin: 6px 0 10px; }

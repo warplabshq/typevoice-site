@@ -5,12 +5,15 @@ window.SITE = {
   company: "Priyam Ventures",
   email: "support@REPLACE-ME.example",     // support + privacy contact
   domain: "https://REPLACE-ME.example",    // where this site is hosted
-  appStoreURL: "https://apps.apple.com/app/idREPLACE-ME",
-  updated: "September 18, 2026",
-  price: "3 days free",      // e.g. "$19" once the App Store price is set
-  priceNote: "then buy it once",
+  downloadURL: "https://github.com/priyam-raj/typevoice/releases/latest/download/TypeVoice.dmg",
+  checkoutURL: "https://checkout.dodopayments.com/buy/REPLACE-ME",   // Dodo Payments product link
+  updated: "September 20, 2026",
+  price: "$79",
+  priceNote: "once, after 3 free days",
+  refundDays: "14",
+  macLimit: "3",            // activations limit set on the Dodo license key entitlement
   jurisdiction: "India",
-  address: "",              // postal address (Apple's EULA terms ask for one); shown after the company name once set
+  address: "",              // postal address; shown after the company name once set
 };
 document.addEventListener("DOMContentLoaded", () => {
   for (const el of document.querySelectorAll("[data-brand]")) {
@@ -20,7 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   for (const a of document.querySelectorAll("a[data-mail]")) { a.href = "mailto:" + SITE.email; a.textContent = SITE.email; }
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
-  for (const a of document.querySelectorAll("a[data-store]")) a.href = SITE.appStoreURL;
+  for (const a of document.querySelectorAll("a[data-download]")) a.href = SITE.downloadURL;
+  for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL;
   document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   // Speech as it sounds: each word slightly tilted, offset and wobbling at its own pace.
