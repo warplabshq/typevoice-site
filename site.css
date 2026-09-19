@@ -288,10 +288,11 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 .flow .wire::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid var(--line2); }
 .flow .wire.dashed::before { border-top-style: dashed; }
 .flow .mpill { height: 44px; padding: 0 14px; border-radius: 999px; background: #000; display: flex; align-items: center; gap: 2.5px; box-shadow: 0 10px 26px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.06); }
-.flow .mpill i { width: 2.5px; height: 30%; border-radius: 2px; background: #fff; animation: mbar 1.1s ease-in-out infinite; }
-.flow .mpill i:nth-child(1) { --h: 28%; animation-delay: -.2s } .flow .mpill i:nth-child(2) { --h: 45%; animation-delay: -.5s } .flow .mpill i:nth-child(3) { --h: 70%; animation-delay: -.1s } .flow .mpill i:nth-child(4) { --h: 95%; animation-delay: -.7s } .flow .mpill i:nth-child(5) { --h: 60%; animation-delay: -.3s }
-.flow .mpill i:nth-child(6) { --h: 80%; animation-delay: -.9s } .flow .mpill i:nth-child(7) { --h: 50%; animation-delay: -.4s } .flow .mpill i:nth-child(8) { --h: 72%; animation-delay: -.6s } .flow .mpill i:nth-child(9) { --h: 40%; animation-delay: -.15s } .flow .mpill i:nth-child(10) { --h: 26%; animation-delay: -.8s }
-@keyframes mbar { 0%, 100% { height: 22%; } 50% { height: var(--h); } }
+/* The brand waveform (same eight bars as the icon and the app), breathing. */
+.flow .mpill i { width: 3px; height: var(--h); border-radius: 2px; background: #fff; animation: mbar 1.6s ease-in-out infinite alternate; }
+.flow .mpill i:nth-child(1) { --h: 16%; animation-delay: -.0s } .flow .mpill i:nth-child(2) { --h: 30%; animation-delay: -.2s } .flow .mpill i:nth-child(3) { --h: 52%; animation-delay: -.4s } .flow .mpill i:nth-child(4) { --h: 74%; animation-delay: -.6s }
+.flow .mpill i:nth-child(5) { --h: 46%; animation-delay: -.8s } .flow .mpill i:nth-child(6) { --h: 62%; animation-delay: -1s } .flow .mpill i:nth-child(7) { --h: 34%; animation-delay: -1.2s } .flow .mpill i:nth-child(8) { --h: 20%; animation-delay: -1.4s }
+@keyframes mbar { from { height: calc(var(--h) * .8); } to { height: calc(var(--h) * 1.2); } }
 .flow .tile-n { height: 44px; padding: 0 15px; display: flex; align-items: center; border-radius: 12px; background: var(--bg2); border: 1px solid var(--line2); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
 .flow .tile-n b { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; }
 .flow .tile-n.ai { position: relative; border-color: transparent; background: var(--bg2); }
