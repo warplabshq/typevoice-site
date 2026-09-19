@@ -237,7 +237,8 @@ footer { border-top: 1px solid var(--line); padding: var(--s6) 0 var(--s5); colo
 kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
 
 /* ---------- motion + responsive ---------- */
-.reveal { opacity: 0; transform: translateY(12px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); } .reveal.in { opacity: 1; transform: none; }
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s cubic-bezier(.2,.8,.2,1); } .reveal.in { opacity: 1; transform: none; }
+.skip { position: absolute; left: 16px; top: -48px; z-index: 50; padding: 8px 14px; border-radius: 999px; background: var(--text); color: var(--bg); font-weight: 600; font-size: 14px; } .skip:focus { top: 12px; outline: none; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .glow { animation: none; } .tile-b, .cta { transition: none; } }
 @media (max-width: 900px) { .bento { grid-template-columns: repeat(2, 1fr); } .tile-b.small { grid-column: span 1; } .fcols { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 760px) {
@@ -335,3 +336,9 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 .thanks .copy { height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; }
 .thanks .copy:hover { border-color: var(--text); }
 .thanks .cta-row { justify-content: flex-start; margin: 6px 0 10px; }
+
+/* Touch: every link that is a control gets a comfortable target. */
+@media (pointer: coarse) {
+  .ghost, .price-right .ghost.small, .faq summary, footer .fcols a { padding-top: 10px; padding-bottom: 10px; }
+  .ghost { display: inline-flex; align-items: center; min-height: 44px; }
+}

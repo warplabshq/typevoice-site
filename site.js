@@ -217,7 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const vis = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("offscreen", !e.isIntersecting)), { rootMargin: "120px 0px" });
   document.querySelectorAll("section, footer").forEach(el => vis.observe(el));
   // Reveal on scroll, count-up numbers.
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.02, rootMargin: "0px 0px -8% 0px" });
+  // Reveal a little before a section enters, so a fast scroll never lands on a blank viewport.
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0, rootMargin: "0px 0px 120px 0px" });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
   // Never leave anything hidden (print, odd scroll tools, very tall viewports).
   setTimeout(() => document.querySelectorAll(".reveal:not(.in)").forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add("in"); }), 1200);
