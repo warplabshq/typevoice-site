@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!/^[A-Z]{2}$/.test(g.country) || /Win/.test(navigator.platform)) return;
       const flag = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
       const p1 = money(g.personal), p2 = money(g.team);
-      const pill = `<span class="offer">${flag} A special price for you</span>`;
+      const pill = `<span class="offer"><span>${flag}</span>A special price for you</span>`;
       heroPrice.innerHTML = `${pill}<br>${p1} <s>$79</s> · One-time purchase`;
       const tag = document.querySelector(".price-tag"); if (tag) {
         tag.querySelector("span").innerHTML = `${p1} <s>$79</s>`;
