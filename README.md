@@ -1,5 +1,8 @@
 # Site
 
+The full operating manual (licensing, releases, deploys, credentials) is `docs/HANDBOOK.md`
+in the app repository (warplabshq/typevoice).
+
 Static landing page, the legal pages, the thank-you page Dodo Payments returns to, and the
 Sparkle appcast.
 
