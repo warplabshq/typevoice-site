@@ -6,7 +6,8 @@ window.SITE = {
   email: "support@REPLACE-ME.example",     // support + privacy contact
   domain: "https://REPLACE-ME.example",    // where this site is hosted
   downloadURL: "https://github.com/priyam-raj/typevoice/releases/latest/download/TypeVoice.dmg",
-  checkoutURL: "https://checkout.dodopayments.com/buy/REPLACE-ME",   // Dodo Payments product link
+  // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
+  checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
   updated: "September 20, 2026",
   price: "$79",
   priceNote: "once, after 7 free days",
@@ -14,7 +15,7 @@ window.SITE = {
   macLimit: "2",            // activations limit on the personal key (a desk Mac and a laptop)
   teamSeats: "5",           // the team key: one key, teamSeats people, 2 Macs each (activations limit 10)
   teamPrice: "$299",
-  teamCheckoutURL: "https://checkout.dodopayments.com/buy/REPLACE-ME-TEAM",
+  teamCheckoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIYh7eg5s2udMzUGZ",
   jurisdiction: "India",
   address: "",              // postal address; shown after the company name once set
 };
@@ -27,8 +28,10 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const a of document.querySelectorAll("a[data-mail]")) { a.href = "mailto:" + SITE.email; a.textContent = SITE.email; }
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
   for (const a of document.querySelectorAll("a[data-download]")) a.href = SITE.downloadURL;
-  for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL;
-  for (const a of document.querySelectorAll("a[data-checkout-team]")) a.href = SITE.teamCheckoutURL;
+  // Checkout links carry the return page, so the key lands on thanks.html after payment.
+  const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks.html");
+  for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL + back;
+  for (const a of document.querySelectorAll("a[data-checkout-team]")) a.href = SITE.teamCheckoutURL + back;
   document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   // Speech as it sounds: each word slightly tilted, offset and wobbling at its own pace.
