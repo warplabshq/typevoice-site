@@ -11,7 +11,10 @@ window.SITE = {
   price: "$79",
   priceNote: "once, after 7 free days",
   refundDays: "14",
-  macLimit: "3",            // activations limit set on the Dodo license key entitlement
+  macLimit: "2",            // activations limit on the personal key (a desk Mac and a laptop)
+  teamSeats: "5",           // the team key: one key, teamSeats people, 2 Macs each (activations limit 10)
+  teamPrice: "$299",
+  teamCheckoutURL: "https://checkout.dodopayments.com/buy/REPLACE-ME-TEAM",
   jurisdiction: "India",
   address: "",              // postal address; shown after the company name once set
 };
@@ -25,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
   for (const a of document.querySelectorAll("a[data-download]")) a.href = SITE.downloadURL;
   for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL;
+  for (const a of document.querySelectorAll("a[data-checkout-team]")) a.href = SITE.teamCheckoutURL;
   document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   // Speech as it sounds: each word slightly tilted, offset and wobbling at its own pace.
