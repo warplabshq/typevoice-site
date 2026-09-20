@@ -6,6 +6,7 @@ window.SITE = {
   email: "mail@warplabs.co",     // support + privacy contact
   domain: "https://typevoice.ai",    // where this site is hosted
   downloadURL: "https://github.com/warplabshq/typevoice-releases/releases/latest/download/TypeVoice.dmg",
+  released: false,          // flip to true with the first release; until then Download reads "Available soon"
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
   updated: "September 20, 2026",
@@ -27,7 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   for (const a of document.querySelectorAll("a[data-mail]")) { a.href = "mailto:" + SITE.email; a.textContent = SITE.email; }
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
-  for (const a of document.querySelectorAll("a[data-download]")) a.href = SITE.downloadURL;
+  for (const a of document.querySelectorAll("a[data-download]")) {
+    if (SITE.released) { a.href = SITE.downloadURL; continue; }
+    a.removeAttribute("href"); a.classList.add("soon"); a.setAttribute("aria-disabled", "true"); a.title = "The first release is being notarized";
+    if (a.classList.contains("cta") || a.classList.contains("navcta")) a.innerHTML = a.innerHTML.replace(/Download( for Mac)?/, "Available soon");
+  }
   // Checkout links carry the return page, so the key lands on thanks.html after payment.
   const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks.html");
   for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL + back;

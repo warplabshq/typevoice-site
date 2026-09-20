@@ -80,7 +80,7 @@ h3 { font-size: 17px; font-weight: 600; }
 .tape .pill { position: absolute; left: 50%; top: 28px; transform: translateX(-50%); z-index: 2; height: 68px; padding: 0 22px; border: 0; background: #000;
   /* A small, bright edge light on the top and bottom rims; no spread. */
   box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.09), 0 -2px 6px rgba(255,255,255,.14), 0 2px 6px rgba(255,255,255,.10); }
-@media (prefers-color-scheme: light) { .tape .pill { box-shadow: 0 14px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.1); } }
+@media (prefers-color-scheme: light) { .tape .pill { box-shadow: 0 8px 22px rgba(0,0,0,.2), 0 0 0 1px rgba(0,0,0,.08); } .tape-clean { box-shadow: 0 6px 18px rgba(0,0,0,.12); } }
 .tape-badge { position: absolute; left: 50%; top: 2px; transform: translateX(-50%); font-size: 12px; color: var(--dim); white-space: nowrap; }
 .tape-badge span { display: inline-block; opacity: 0; transform: translateY(4px); transition: opacity .45s ease, transform .45s ease; }
 .tape-badge span.on { opacity: 1; transform: translateY(0); }
@@ -243,7 +243,10 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 @media (max-width: 760px) {
   :root { --s7: 56px; --s8: 72px; }
   nav { gap: 14px; } nav a:not(.navcta) { display: none; }
-  .tape .pill { height: 56px; padding: 0 16px; } .tape .pill canvas { width: 180px !important; height: 43px !important; } .tape { margin-top: var(--s5); }
+  .tape .pill { height: 56px; padding: 0 16px; } .tape .pill canvas { width: 180px !important; height: 43px !important; } .tape { margin-top: var(--s2); height: 104px; }
+  .tape-raw { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000); mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000); }
+  .tape-raw, .tape-clean { top: 32px; } .tape .pill { top: 24px; }
+  .tapeband { padding-bottom: var(--s4); } .cue { margin-top: 18px; }
   /* Phones: a tidy 2×2, value over label, no glyph. */
   .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; max-width: 320px; margin-left: auto; margin-right: auto; }
   .strip li { flex-direction: column; align-items: flex-start; gap: 1px; padding: 0; border-left: 0; white-space: normal; }
@@ -350,3 +353,6 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 .changelog h2 { display: flex; align-items: baseline; gap: 12px; font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 30px; margin: 0 0 6px; }
 .changelog h2 small { font-family: inherit; font-size: 15px; color: var(--faint); font-style: italic; }
 .changelog li { margin: 6px 0; }
+
+/* Before the first release: the Download buttons wait politely. */
+.soon { cursor: default; opacity: .72; } .soon:hover { transform: none; box-shadow: none; }
