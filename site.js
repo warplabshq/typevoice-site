@@ -3,8 +3,8 @@ window.SITE = {
   name: "TypeVoice",
   tagline: "Local dictation for Mac",
   company: "Priyam Ventures",
-  email: "support@REPLACE-ME.example",     // support + privacy contact
-  domain: "https://REPLACE-ME.example",    // where this site is hosted
+  email: "mail@warplabs.co",     // support + privacy contact
+  domain: "https://typevoice.app",    // where this site is hosted
   downloadURL: "https://github.com/priyam-raj/typevoice/releases/latest/download/TypeVoice.dmg",
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",

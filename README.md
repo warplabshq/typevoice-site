@@ -20,10 +20,10 @@ in step with the Dodo product and the app's `Brand.swift`.
 
 SEO lives in the `<head>` of each page and can't come from JS: canonical and Open Graph URLs,
 the JSON-LD (`SoftwareApplication` + `FAQPage` on the home page), `robots.txt` and
-`sitemap.xml`. They carry the same `https://REPLACE-ME.example` placeholder as `site.js`;
+`sitemap.xml`. They carry the same `https://typevoice.app` placeholder as `site.js`;
 when the domain exists, replace it everywhere in one go:
 
-    grep -rl "REPLACE-ME.example" . | xargs sed -i '' 's|https://REPLACE-ME.example|https://your.domain|g'
+    grep -rl "REPLACE-ME.example" . | xargs sed -i '' 's|https://typevoice.app|https://your.domain|g'
 
 Then put the same host into the app: `Brand.website` in `Sources/TypeVoice/Support/Brand.swift`
 and `SUFeedURL` in `Packaging/Info.plist`, and set `https://your.domain/thanks.html` as the
