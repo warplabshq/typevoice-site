@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /thanks.html
+Disallow: /thanks
 Sitemap: https://typevoice.ai/sitemap.xml
