@@ -85,8 +85,8 @@ h3 { font-size: 17px; font-weight: 600; }
 /* The regional-price pill: a quiet "you're in 🇮🇳" over the price, and the list price struck through. */
 .offer { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px 4px 9px; border-radius: 999px; background: var(--card); border: 1px solid var(--line2); font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
 .sub s, .price-tag s, .team s { color: var(--faint); font-weight: 400; text-decoration-thickness: 1px; }
-.price-tag span s { font-size: 18px; letter-spacing: 0; vertical-align: 6px; margin-left: 4px; }
-.price-tag .offer { margin: 4px 0 8px; }
+.price-tag > span s { font-size: 18px; letter-spacing: 0; vertical-align: 6px; margin-left: 4px; }
+.price-tag .offer { margin: 4px 0 8px; } .price-tag .offer span { display: inline; font-size: inherit; font-weight: inherit; }
 .hero .sub { margin-top: 18px; line-height: 1.7; } .hero .sub2 { text-decoration: underline; text-decoration-color: var(--line2); text-underline-offset: 3px; }
 :root { --ribbon-bg: #f4f4f6; --ribbon-fg: #111114; }
 @media (prefers-color-scheme: light) { :root { --ribbon-bg: #111114; --ribbon-fg: #f4f4f6; } }
@@ -209,7 +209,7 @@ h3 { font-size: 17px; font-weight: 600; }
 .ticks li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
 .price-left .team { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 14px; } .price-left .team b { color: var(--text); font-weight: 600; }
 .price-right { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; border-left: 1px solid var(--line); padding-left: var(--s4); }
-.price-tag span { display: block; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; } .price-tag small { color: var(--dim); }
+.price-tag > span { display: block; font-size: 44px; font-weight: 700; letter-spacing: -0.02em; } .price-tag small { color: var(--dim); }
 .price-right .faint { color: var(--faint); font-size: 12px; max-width: 220px; }
 .price-right .ghost.small { font-size: 14px; margin-top: -6px; }
 
