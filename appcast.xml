@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.3</title>
-            <pubDate>Sun, 20 Sep 2026 22:55:40 +0530</pubDate>
-            <sparkle:version>103</sparkle:version>
-            <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
+            <title>1.0.4</title>
+            <pubDate>Sun, 20 Sep 2026 23:14:37 +0530</pubDate>
+            <sparkle:version>104</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.3 — 20 September 2026</h1><ul><li>TypeVoice is open source: the code is on GitHub under the GPL v3, linked from the Privacy tab, Settings › About and the Help menu. Nothing about the app changed; now you can check.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.4 — 20 September 2026</h1><ul><li>Style › Sign-off: a fixed note on the end of every dictation, for places where spelling gets judged — a coding assistant, a ticket queue. Off by default; the text is yours to change.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.3/TypeVoice-1.0.3.zip" length="5740658" type="application/octet-stream" sparkle:edSignature="zJZ87VneKrWXMM+GX+8y5/na5O7rJIamDRBPj5ta2dyoAGiH7UcmXFOfLv9u+/V1hGZQ78drkLiUngXp6c6iDw=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.4/TypeVoice-1.0.4.zip" length="5756738" type="application/octet-stream" sparkle:edSignature="cV/Lp5HP+GtoZ+cygK+o4J7OLvCw50uDdDpG/PQLQ2t0mXzWew7mc48xqY6fKZyZ0UIqQ0zUOFH1r411UrJnBg=="/>
         </item>
     </channel>
 </rss>
