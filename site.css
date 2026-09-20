@@ -54,37 +54,29 @@ h3 { font-size: 17px; font-weight: 600; }
 .sub { color: var(--faint); font-size: 13px; margin: var(--s2) 0 0; }
 
 /* ---------- hero ---------- */
-.hero { text-align: center; min-height: min(72vh, 680px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--s5) 0 var(--s3); }
-.hero .sub { margin-top: 18px; line-height: 1.7; } .hero .sub2 { text-decoration: underline; text-decoration-color: var(--line2); text-underline-offset: 3px; }
+.hero { text-align: center; min-height: min(78vh, 720px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: var(--s5) 0 var(--s3); }
 .cue { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line2); color: var(--dim); margin-top: 26px; transition: color .2s, border-color .2s, transform .3s; }
 .cue:hover { color: var(--text); border-color: var(--text); transform: translateY(2px); text-decoration: none; }
-/* The tape band under the hero. */
-.tapeband { padding: 0 0 var(--s5); } .tapeband .strip { margin-top: var(--s5); }
-/* Ticker tape: what you said flows in from the left, what got typed rolls out on a ribbon. */
-:root { --ribbon-bg: #f4f4f6; --ribbon-fg: #111114; }
-@media (prefers-color-scheme: light) { :root { --ribbon-bg: #111114; --ribbon-fg: #f4f4f6; } }
-.tape { position: relative; contain: layout paint; width: 112vw; margin: var(--s2) 0 var(--s3) calc(50% - 56vw); height: 120px; transform: rotate(-2deg); pointer-events: none; }
-.tape-raw, .tape-clean { position: absolute; top: 40px; height: 44px; overflow: hidden; display: flex; align-items: center; }
-.tape-raw { left: 0; right: 50%; -webkit-mask-image: linear-gradient(90deg, transparent 8%, #000 42%, #000); mask-image: linear-gradient(90deg, transparent 8%, #000 42%, #000); }
-.tape-clean { left: 50%; right: 0; background: var(--ribbon-bg); box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  -webkit-mask-image: linear-gradient(90deg, #000, #000 58%, transparent 92%); mask-image: linear-gradient(90deg, #000, #000 58%, transparent 92%); }
+/* The ticker in the hero: one straight band at the icon's height. Speech (bars) flows in from
+   the left, the app sits in the middle, the typed sentence streams out to the right. */
+.ticker { position: relative; contain: layout paint; width: 100vw; margin: 0 0 var(--s5) calc(50% - 50vw); height: 96px; pointer-events: none; }
+.tk-in, .tk-out { position: absolute; top: 0; height: 100%; }
+.tk-in { left: 0; width: calc(50% - 34px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000); mask-image: linear-gradient(90deg, transparent, #000 22%, #000); }
+.tk-out { left: calc(50% + 34px); right: 0; overflow: hidden; display: flex; align-items: center; -webkit-mask-image: linear-gradient(90deg, #000, #000 70%, transparent); mask-image: linear-gradient(90deg, #000, #000 70%, transparent); }
+.tk-icon { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; transform: translate(-50%, -50%); z-index: 2; border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08); }
+@media (prefers-color-scheme: light) { .tk-icon { box-shadow: 0 10px 28px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.06); } }
 .track { display: flex; white-space: nowrap; animation: tape 60s linear infinite; }
 /* Anything scrolled out of view stops animating: the page shouldn't tax the GPU for what nobody sees. */
 .offscreen, .offscreen * { animation-play-state: paused !important; }
-.track > span { padding-right: 1.4em; }
-.tape-raw .track { color: var(--dim); font-size: 15px; font-weight: 300; font-style: italic; padding-right: 140px; }
-.tape-raw .w, .say .w { display: inline-block; font-style: italic; opacity: var(--o); transform: rotate(var(--r)) translateY(var(--y)); animation: wobble var(--d) ease-in-out var(--dl) infinite alternate; }
-@keyframes wobble { to { transform: rotate(calc(var(--r) * -1)) translateY(calc(var(--y) * -1)); } }
-.tape-clean .track { color: var(--ribbon-fg); font-size: 15px; font-weight: 500; padding-left: 150px; }
+.track > span { padding-right: 1.6em; }
+.tk-out .track { color: var(--text); font-size: 17px; font-weight: 400; letter-spacing: -0.005em; padding-left: 14px; }
 @keyframes tape { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-.tape .pill { position: absolute; left: 50%; top: 28px; transform: translateX(-50%); z-index: 2; height: 68px; padding: 0 22px; border: 0; background: #000;
-  /* A small, bright edge light on the top and bottom rims; no spread. */
-  box-shadow: 0 14px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.09), 0 -2px 6px rgba(255,255,255,.14), 0 2px 6px rgba(255,255,255,.10); }
-@media (prefers-color-scheme: light) { .tape .pill { box-shadow: 0 8px 22px rgba(0,0,0,.2), 0 0 0 1px rgba(0,0,0,.08); } .tape-clean { box-shadow: 0 6px 18px rgba(0,0,0,.12); } .tape-raw .track { color: rgba(0,0,0,.78); } }
-.tape-badge { position: absolute; left: 50%; top: 2px; transform: translateX(-50%); font-size: 12px; color: var(--dim); white-space: nowrap; }
-.tape-badge span { display: inline-block; opacity: 0; transform: translateY(4px); transition: opacity .45s ease, transform .45s ease; }
-.tape-badge span.on { opacity: 1; transform: translateY(0); }
-@media (prefers-reduced-motion: reduce) { .track, .tape-raw .w, .say .w { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+.facts { padding: 0 0 var(--s5); }
+.hero .sub { margin-top: 18px; line-height: 1.7; } .hero .sub2 { text-decoration: underline; text-decoration-color: var(--line2); text-underline-offset: 3px; }
+:root { --ribbon-bg: #f4f4f6; --ribbon-fg: #111114; }
+@media (prefers-color-scheme: light) { :root { --ribbon-bg: #111114; --ribbon-fg: #f4f4f6; } }
 .eyebrow.tag { display: inline-block; background: var(--ribbon-bg); color: var(--ribbon-fg); border-radius: 999px; padding: 6px 12px; font-size: 11px; letter-spacing: .1em; margin-bottom: var(--s3); }
 .pill { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: 0 14px; border-radius: 999px; background: #0a0a0a;
   border: 0.6px solid rgba(255,255,255,.14); box-shadow: 0 6px 16px rgba(0,0,0,.28), 0 1px 2px rgba(0,0,0,.16); transition: opacity .4s ease, transform .45s cubic-bezier(.2,.8,.2,1); }
@@ -101,8 +93,8 @@ h3 { font-size: 17px; font-weight: 600; }
 .strip li:first-child { border-left: 0; }
 .strip b { font-size: 15px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; } .strip span { color: var(--dim); font-size: 14px; }
 /* The two numbers get colour; the rest stay quiet. */
-:root { --c-blue: #5aa4ff; --c-green: #5fd68a; --c-purple: #b48fff; --c-pink: #ff85b6; }
-@media (prefers-color-scheme: light) { :root { --c-blue: #1f6fe0; --c-green: #1f9d55; --c-purple: #7a4fd6; --c-pink: #d8397a; } }
+:root { --c-blue: #5aa4ff; --c-green: #5fd68a; --c-purple: #b48fff; --c-pink: #ff85b6; --tk-bar: #7ea8ec; }
+@media (prefers-color-scheme: light) { :root { --c-blue: #1f6fe0; --c-green: #1f9d55; --c-purple: #7a4fd6; --c-pink: #d8397a; --tk-bar: #94b9f6; } }
 .strip li:nth-child(1) b { color: var(--c-blue); } .strip li:nth-child(2) b { color: var(--c-green); }
 .netglyph { align-self: center; margin-right: 2px; width: 18px; height: 14px; fill: none; stroke: var(--c-green); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
 
@@ -243,10 +235,9 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 @media (max-width: 760px) {
   :root { --s7: 56px; --s8: 72px; }
   nav { gap: 14px; } nav a:not(.navcta) { display: none; }
-  .tape .pill { height: 56px; padding: 0 16px; } .tape .pill canvas { width: 180px !important; height: 43px !important; } .tape { margin-top: var(--s2); height: 104px; }
-  .tape-raw { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000); mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000); }
-  .tape-raw, .tape-clean { top: 32px; } .tape .pill { top: 24px; }
-  .tapeband { padding-bottom: var(--s4); } .cue { margin-top: 18px; }
+  .ticker { height: 76px; margin-bottom: var(--s4); } .tk-icon { width: 52px; height: 52px; border-radius: 12px; }
+  .tk-in { width: calc(50% - 28px); } .tk-out { left: calc(50% + 28px); } .tk-out .track { font-size: 15px; padding-left: 10px; }
+  .facts { padding-bottom: var(--s4); } .cue { margin-top: 18px; }
   /* Phones: a tidy 2×2, value over label, no glyph. */
   .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; max-width: 320px; margin-left: auto; margin-right: auto; }
   .strip li { flex-direction: column; align-items: flex-start; gap: 1px; padding: 0; border-left: 0; white-space: normal; }

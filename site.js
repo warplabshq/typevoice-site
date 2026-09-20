@@ -74,26 +74,45 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(frame);
   }
   startBars(document.getElementById("wave2"), { w: 200, h: 48, n: 24, bw: 2.8, gap: 2.6 });
-  const c = document.getElementById("wave");
-  if (c) {
-    startBars(c, { w: 236, h: 56, n: 26, bw: 3, gap: 3 });
-    // Ticker tape: what was said flows in from the left, what got typed flows out to the right.
-    const raw = "um so can we move the launch review to wednesday at 3 wednesday works better for the design team   shipped the new export flow to vid ai two things to watch cold start and the retry logic   groceries milk eggs bread also um call the dentist on monday   hey uh quick one the invoice for march is still open can you nudge them   i think we should uh hold the release till the crash on intel is fixed   ";
+  // Hero ticker. One flow, left to right: speech bars run into the icon, the typed sentence
+  // comes out the other side. Both move at the same speed so it reads as one stream.
+  const tkOut = document.getElementById("tk-out"), tkIn = document.getElementById("tk-in");
+  if (tkOut && tkIn) {
+    const speed = 44; // px per second
     const clean = "Can we move the launch review to Wednesday at 3? Wednesday works better for the design team.   Shipped the new export flow to VidAI. Two things to watch: cold start, and the retry logic.   Groceries: milk, eggs, bread. Also call the dentist on Monday.   Hey, quick one: the invoice for March is still open, can you nudge them?   I think we should hold the release till the crash on Intel is fixed.   ";
-    const speed = 42; // px per second, same on both sides
-    for (const [id, text] of [["track-raw", raw], ["track-clean", clean]]) {
-      const track = document.getElementById(id), html = id === "track-raw" ? clumsy(text) : text;
-      track.innerHTML = `<span>${html}</span><span>${html}</span>`;
-      const fit = () => { track.style.animationDuration = (track.scrollWidth / 2 / speed) + "s"; };
-      fit(); addEventListener("resize", fit);
+    tkOut.innerHTML = `<span>${clean}</span><span>${clean}</span>`;
+    const fit = () => { tkOut.style.animationDuration = (tkOut.scrollWidth / 2 / speed) + "s"; };
+    fit(); addEventListener("resize", fit);
+
+    // Bars: a fixed pitch, heights from a slow syllable-like envelope keyed to world position,
+    // so the same bar keeps its height as it travels.
+    const ctx = tkIn.getContext("2d"), bw = 4, gap = 4.5, pitch = bw + gap;
+    const color = getComputedStyle(document.documentElement).getPropertyValue("--tk-bar").trim() || "#8fb5f7";
+    let W = 0, H = 0, dpr = 1;
+    const size = () => { dpr = window.devicePixelRatio || 1; W = tkIn.clientWidth; H = tkIn.clientHeight; tkIn.width = W * dpr; tkIn.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    size(); addEventListener("resize", size);
+    const env = (k) => { // k = bar index in world space; gentle speech rhythm, never silent
+      const syl = 0.5 + 0.5 * Math.sin(k * 0.55);                 // syllables
+      const breath = 0.6 + 0.4 * Math.sin(k * 0.17 + 1.3);         // phrases
+      const grain = 0.75 + 0.25 * Math.sin(k * 2.3) * Math.cos(k * 0.9);
+      return 0.28 + 0.72 * syl * breath * grain; };
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let t0 = performance.now();
+    function frame(now) {
+      // Browsers already stop rAF in hidden tabs; only skip when the hero is scrolled away.
+      if (tkIn.closest(".offscreen")) { requestAnimationFrame(frame); return; }
+      const off = reduced ? 0 : ((now - t0) / 1000) * speed;  // px travelled to the right
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = color;
+      const first = Math.floor(-off / pitch) - 1, maxH = H * 0.5;
+      for (let k = first; ; k++) {
+        const x = k * pitch + off; if (x > W) break; if (x + bw < 0) continue;
+        const h = Math.max(3, env(k) * maxH);
+        ctx.beginPath(); ctx.roundRect(x, H / 2 - h / 2, bw, h, bw / 2); ctx.fill();
+      }
+      requestAnimationFrame(frame);
     }
-    // A quiet note above the pill about what just got fixed.
-    const notes = ["removed “um”", "wednesday → Wednesday", "added the comma", "vid ai → VidAI", "3 → at 3?", "monday → Monday"];
-    const badge = document.getElementById("badge").firstElementChild;
-    let ni = 0;
-    const cycle = () => { badge.classList.remove("on"); setTimeout(() => { badge.textContent = notes[ni++ % notes.length]; badge.classList.add("on"); }, 500); };
-    setTimeout(() => { badge.classList.add("on"); }, 400);
-    setInterval(cycle, 4200);
+    requestAnimationFrame(frame);
   }
   // Sticky header shadow.
   const hdr = document.querySelector("header.nav");
