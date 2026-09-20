@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     a.removeAttribute("href"); a.classList.add("soon"); a.setAttribute("aria-disabled", "true"); a.title = "The first release is being notarized";
     if (a.classList.contains("cta") || a.classList.contains("navcta")) a.innerHTML = a.innerHTML.replace(/Download( for Mac)?/, "Available soon");
   }
-  // Checkout links carry the return page, so the key lands on thanks.html after payment.
-  const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks.html");
+  // Checkout links carry the return page, so the key lands on /thanks after payment.
+  const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks");
   for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL + back;
   for (const a of document.querySelectorAll("a[data-checkout-team]")) a.href = SITE.teamCheckoutURL + back;
   document.title = document.title.replace("TypeVoice", SITE.name);
