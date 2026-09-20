@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.5</title>
-            <pubDate>Sun, 20 Sep 2026 23:54:01 +0530</pubDate>
-            <sparkle:version>105</sparkle:version>
-            <sparkle:shortVersionString>1.0.5</sparkle:shortVersionString>
+            <title>1.0.6</title>
+            <pubDate>Mon, 21 Sep 2026 00:03:23 +0530</pubDate>
+            <sparkle:version>106</sparkle:version>
+            <sparkle:shortVersionString>1.0.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.5 — 20 September 2026</h1><ul><li>After an update installs, the window comes back where it was instead of the app quietly relaunching in the menu bar.</li><li>The menu bar glyph eases between states. Listening lifts the bars a little rather than swapping in a different, fatter icon.</li><li>Settings › About says Changelog, like the site.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.6 — 21 September 2026</h1><ul><li>Apple Intelligence bug fixes. Smart cleanup is now off by default; turn it on under Style if you want the model&#x27;s edits and don&#x27;t mind a moment more per dictation.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.5/TypeVoice-1.0.5.zip" length="5766916" type="application/octet-stream" sparkle:edSignature="usUM60WpODHypHsQqc3g6BcqoyBdGTYL8eu7sSJuRk7PNXYDkhKGMffsxymcyNBtcH88AhwSIw61+g2kgmbqCA=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.6/TypeVoice-1.0.6.zip" length="5770396" type="application/octet-stream" sparkle:edSignature="b9ymyNEpychGxpWKWmrC5GiUnNrOpK2spzeRTpKBRTnGCxQCaDpdbUDegbajL/fekKcnEdTRqsYHxkjmD+P1BQ=="/>
         </item>
     </channel>
 </rss>
