@@ -134,6 +134,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     requestAnimationFrame(frame);
   }
+  // Regional pricing. /geo (a Pages Function) says what this visitor's country pays and the
+  // exchange rate; Dodo applies the same percentage at checkout by billing country. Figures are
+  // rounded up past Dodo's conversion margin, so the checkout is never higher than the page said.
+  const heroPrice = document.getElementById("hero-price");
+  if (heroPrice && window.fetch) {
+    fetch("/geo" + location.search).then(r => r.ok ? r.json() : null).then(g => {
+      if (!g || !(g.pct < 100)) return;
+      const list = 79, team = 299;
+      const local = (usd) => {
+        const x = usd * g.pct / 100 * g.rate * (g.currency === "USD" ? 1 : 1.04);
+        const step = Math.pow(10, Math.max(0, Math.floor(Math.log10(x)) - 1));
+        const n = Math.ceil(x / step) * step;
+        try { return new Intl.NumberFormat(undefined, { style: "currency", currency: g.currency, maximumFractionDigits: 0 }).format(n); }
+        catch (_) { return g.currency + " " + n; }
+      };
+      let name = g.country;
+      try { name = new Intl.DisplayNames(["en"], { type: "region" }).of(g.country) || g.country; } catch (_) {}
+      const p1 = local(list), p2 = local(team);
+      heroPrice.textContent = `About ${p1} in ${name} · One-time purchase`;
+      const tag = document.querySelector(".price-tag"); if (tag) {
+        tag.querySelector("span").textContent = "≈ " + p1;
+        tag.querySelector("small").textContent = `in ${name}, once · $${list} list price`;
+      }
+      const tp = document.getElementById("team-price"); if (tp) tp.textContent = `about ${p2}`;
+      const note = document.getElementById("price-note"); if (note) note.textContent =
+        `Regional pricing: ${name} pays ${g.pct}% of the US price, applied automatically at checkout by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
+      const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · about ${p1} once`;
+    }).catch(() => {});
+  }
+
   // Sticky header shadow.
   const hdr = document.querySelector("header.nav");
   if (hdr) { const onScroll = () => hdr.classList.toggle("scrolled", window.scrollY > 8); onScroll(); addEventListener("scroll", onScroll, { passive: true }); }
