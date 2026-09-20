@@ -20,10 +20,10 @@ in step with the Dodo product and the app's `Brand.swift`.
 
 SEO lives in the `<head>` of each page and can't come from JS: canonical and Open Graph URLs,
 the JSON-LD (`SoftwareApplication` + `FAQPage` on the home page), `robots.txt` and
-`sitemap.xml`. The domain is `https://typevoice.app` everywhere (`CNAME` holds it for GitHub
+`sitemap.xml`. The domain is `https://typevoice.ai` everywhere (`CNAME` holds it for GitHub
 Pages); if it ever changes, replace it in one go:
 
-    grep -rl "typevoice.app" . | xargs sed -i '' 's|https://typevoice.app|https://your.domain|g'
+    grep -rl "typevoice.ai" . | xargs sed -i '' 's|https://typevoice.ai|https://your.domain|g'
 
 and in the app: `Brand.website` in `Sources/TypeVoice/Support/Brand.swift`, `SUFeedURL` in
 `Packaging/Info.plist`, and the Dodo brand's URL.
