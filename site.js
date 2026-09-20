@@ -33,14 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const a of document.querySelectorAll("a[data-mail]")) { a.href = "mailto:" + SITE.email; a.textContent = SITE.email; }
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
   for (const a of document.querySelectorAll("a[data-download]")) {
+    a.dataset.umamiEvent = "download";   // Umami counts clicks on these (no personal data)
     if (SITE.released) { a.href = SITE.downloadURL; continue; }
     a.removeAttribute("href"); a.classList.add("soon"); a.setAttribute("aria-disabled", "true"); a.title = "The first release is being notarized";
     if (a.classList.contains("cta") || a.classList.contains("navcta")) a.innerHTML = a.innerHTML.replace(/Download( for Mac)?/, "Available soon");
   }
   // Checkout links carry the return page, so the key lands on /thanks after payment.
   const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks");
-  for (const a of document.querySelectorAll("a[data-checkout]")) a.href = SITE.checkoutURL + back;
-  for (const a of document.querySelectorAll("a[data-checkout-team]")) a.href = SITE.teamCheckoutURL + back;
+  for (const a of document.querySelectorAll("a[data-checkout]")) { a.href = SITE.checkoutURL + back; a.dataset.umamiEvent = "buy"; }
+  for (const a of document.querySelectorAll("a[data-checkout-team]")) { a.href = SITE.teamCheckoutURL + back; a.dataset.umamiEvent = "buy-team"; }
   document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
   // Speech as it sounds: each word slightly tilted, offset and wobbling at its own pace.
@@ -161,6 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const note = document.getElementById("price-note"); if (note) note.textContent =
         `Regional pricing: ${name} pays ${g.pct}% of the US price, applied automatically at checkout by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
       const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · about ${p1} once`;
+      if (window.umami && umami.track) umami.track("regional-price", { country: g.country, pct: g.pct });
     }).catch(() => {});
   }
 
