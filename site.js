@@ -34,13 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const el of document.querySelectorAll("[data-brand=\"address-line\"]")) el.textContent = SITE.address ? ", " + SITE.address : "";
   for (const a of document.querySelectorAll("a[data-download]")) {
     a.dataset.umamiEvent = "download";   // Umami counts clicks on these (no personal data)
+    a.dataset.umamiEventPlace = a.closest("header") ? "nav" : a.closest("footer") ? "footer" : (a.closest("section")?.id || a.closest("section")?.className.split(" ")[0] || "page");
     if (SITE.released) { a.href = SITE.downloadURL; continue; }
     a.removeAttribute("href"); a.classList.add("soon"); a.setAttribute("aria-disabled", "true"); a.title = "The first release is being notarized";
     if (a.classList.contains("cta") || a.classList.contains("navcta")) a.innerHTML = a.innerHTML.replace(/Download( for Mac)?/, "Available soon");
   }
   // Checkout links carry the return page, so the key lands on /thanks after payment.
   const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks");
-  for (const a of document.querySelectorAll("a[data-checkout]")) { a.href = SITE.checkoutURL + back; a.dataset.umamiEvent = "buy"; }
+  for (const a of document.querySelectorAll("a[data-checkout]")) { a.href = SITE.checkoutURL + back; a.dataset.umamiEvent = "buy"; a.dataset.umamiEventPlace = a.closest("section")?.id || "page"; }
   for (const a of document.querySelectorAll("a[data-checkout-team]")) { a.href = SITE.teamCheckoutURL + back; a.dataset.umamiEvent = "buy-team"; }
   document.title = document.title.replace("TypeVoice", SITE.name);
   const y = document.querySelector("[data-year]"); if (y) y.textContent = new Date().getFullYear();
