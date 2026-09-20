@@ -6,7 +6,7 @@ window.SITE = {
   email: "mail@warplabs.co",     // support + privacy contact
   domain: "https://typevoice.ai",    // where this site is hosted
   downloadURL: "https://github.com/warplabshq/typevoice-releases/releases/latest/download/TypeVoice.dmg",
-  released: false,          // flip to true with the first release; until then Download reads "Available soon"
+  released: true,           // false makes every Download button read "Available soon"
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
   updated: "September 20, 2026",

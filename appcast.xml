@@ -1,11 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Sparkle appcast. Replaced wholesale by `make release` in the app repository (dist/appcast.xml);
-     an empty channel means "no updates yet", which is what a fresh install should see. -->
-<rss version="2.0" xmlns:sparkle="http://www.andre-simon.de/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <channel>
-    <title>TypeVoice</title>
-    <link>https://typevoice.ai/appcast.xml</link>
-    <description>Updates for TypeVoice.</description>
-    <language>en</language>
-  </channel>
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>TypeVoice</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sun, 20 Sep 2026 07:56:14 +0530</pubDate>
+            <sparkle:version>100</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.0 — 20 September 2026</h1><p>The first release.</p><ul><li>Hold a key, talk, let go: the words are typed into whatever app you&#x27;re in, through Accessibility, with paste as the fallback.</li><li>English speech recognition on the Neural Engine (NVIDIA Parakeet), fully offline after a one-time model download. Nothing you say leaves the Mac.</li><li>Cleanup by rule: fillers, stutters, numbers, spoken commands (&quot;new line&quot;, &quot;bullet&quot;, &quot;number one&quot;), natural lists (&quot;grocery list: milk, eggs, bread&quot;), paragraphs from pauses. Apple Intelligence tidies further on Macs that have it.</li><li>A personal Dictionary for names and product terms, matched by how they sound.</li><li>Summary: every dictation, searchable and exportable, with the time it saved you.</li><li>Optional voice notes: drag the audio of any dictation into iMessage, WhatsApp or Slack.</li><li>Trigger your way: the Globe key, a chord like ⌥⌘, a combination, tap-to-toggle, double-tap to keep listening hands-free; Esc cancels; a stop button if anything takes long.</li><li>Seven-day free trial, then one purchase. Updates in place.</li></ul>
+]]></description>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.0/TypeVoice-1.0.0.zip" length="5724422" type="application/octet-stream" sparkle:edSignature="OTFX35AfgpY6WSYBdNulS1RQan+YDCwuXI+o4blH7aV4cjrtC3k464YnUpvs6UlzQc81RJ0d4xeMsQ2vInUBAA=="/>
+        </item>
+    </channel>
 </rss>
