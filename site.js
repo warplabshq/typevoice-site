@@ -5,7 +5,7 @@ window.SITE = {
   company: "Priyam Ventures",
   email: "mail@warplabs.co",     // support + privacy contact
   domain: "https://typevoice.app",    // where this site is hosted
-  downloadURL: "https://github.com/priyam-raj/typevoice/releases/latest/download/TypeVoice.dmg",
+  downloadURL: "https://github.com/warplabshq/typevoice/releases/latest/download/TypeVoice.dmg",
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
   updated: "September 20, 2026",
