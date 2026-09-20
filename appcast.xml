@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.6</title>
-            <pubDate>Mon, 21 Sep 2026 00:03:23 +0530</pubDate>
-            <sparkle:version>106</sparkle:version>
-            <sparkle:shortVersionString>1.0.6</sparkle:shortVersionString>
+            <title>1.0.7</title>
+            <pubDate>Mon, 21 Sep 2026 00:30:55 +0530</pubDate>
+            <sparkle:version>107</sparkle:version>
+            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.6 — 21 September 2026</h1><ul><li>Apple Intelligence bug fixes. Smart cleanup is now off by default; turn it on under Style if you want the model&#x27;s edits and don&#x27;t mind a moment more per dictation.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.7 — 21 September 2026</h1><ul><li>Fixes a crash when choosing an item in the menu bar menu.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.6/TypeVoice-1.0.6.zip" length="5770396" type="application/octet-stream" sparkle:edSignature="b9ymyNEpychGxpWKWmrC5GiUnNrOpK2spzeRTpKBRTnGCxQCaDpdbUDegbajL/fekKcnEdTRqsYHxkjmD+P1BQ=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.7/TypeVoice-1.0.7.zip" length="5770033" type="application/octet-stream" sparkle:edSignature="UcDAd5A+mDTkLgVtGvbJYIVm1zDs6W18qP+ppR4cYxPvcd7iBV66ciz18Fpxp3zVQoztj5YaU13NGkOQIaz8AQ=="/>
         </item>
     </channel>
 </rss>
