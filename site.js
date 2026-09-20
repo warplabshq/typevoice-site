@@ -137,8 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   // Regional pricing. /geo (a Pages Function) returns the fixed price for the visitor's country
   // when there is one; Dodo charges exactly that at checkout, by billing country (plus tax).
-  const heroPrice = document.getElementById("hero-price");
-  if (heroPrice && window.fetch) {
+  const priceTag = document.querySelector(".price-tag");
+  if (priceTag && window.fetch) {
     fetch("/geo" + location.search).then(r => r.ok ? r.json() : null).then(g => {
       if (!g || !g.personal) return;
       const money = (n) => { try { return new Intl.NumberFormat("en", { style: "currency", currency: g.currency, maximumFractionDigits: 0 }).format(n); } catch (_) { return g.currency + " " + n; } };
@@ -147,12 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!/^[A-Z]{2}$/.test(g.country) || /Win/.test(navigator.platform)) return;
       const flag = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
       const p1 = money(g.personal), p2 = money(g.team);
-      const pill = `<span class="offer"><span>${flag}</span>A special price for you</span>`;
-      heroPrice.innerHTML = `${pill}<br>${p1} <s>$79</s> · One-time purchase`;
-      const tag = document.querySelector(".price-tag"); if (tag) {
-        tag.querySelector("span").innerHTML = `${p1} <s>$79</s>`;
-        tag.querySelector("small").textContent = `${flag} special price · once, plus ${g.tax}`;
-      }
+      priceTag.querySelector("span").innerHTML = `${p1} <s>$79</s>`;
+      priceTag.querySelector("small").innerHTML = `<span class="offer"><span>${flag}</span>A special price for you</span><br>once, plus ${g.tax}`;
       const tp = document.getElementById("team-price"); if (tp) tp.innerHTML = `${p2} <s>$299</s>`;
       const note = document.getElementById("price-note"); if (note) note.textContent =
         `${flag} You're in one of the few places with a special price; the checkout applies it by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
