@@ -367,3 +367,12 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 
 /* Before the first release: the Download buttons wait politely. */
 .soon { cursor: default; opacity: .72; } .soon:hover { transform: none; box-shadow: none; } .soon svg { display: none; }
+
+/* Comparison page */
+.vs .cmp { width: 100%; border-collapse: collapse; margin: var(--s4) 0 var(--s5); font-size: 14.5px; }
+.vs .cmp th, .vs .cmp td { text-align: left; vertical-align: top; padding: 12px 12px; border-bottom: 1px solid var(--line); }
+.vs .cmp thead th { color: var(--dim); font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.vs .cmp tbody th { font-weight: 500; color: var(--text); width: 30%; } .vs .cmp td { color: var(--dim); } .vs .cmp td.good { color: var(--text); }
+.vs .cmp td.good::before { content: "✓ "; color: var(--c-green); }
+.vs .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: var(--s4); } .vs .fine { color: var(--faint); font-size: 12.5px; margin-top: var(--s4); }
+@media (max-width: 640px) { .vs .cmp thead { display: none; } .vs .cmp tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); } .vs .cmp th, .vs .cmp td { display: block; border: 0; padding: 3px 0; width: auto; } .vs .cmp td::before { font-weight: 600; color: var(--faint); } .vs .cmp td:nth-child(2)::before { content: "TypeVoice: "; } .vs .cmp td.good:nth-child(2)::before { content: "✓ TypeVoice: "; } .vs .cmp td:nth-child(3)::before { content: "Wispr Flow: "; } .vs .cmp td.good:nth-child(3)::before { content: "✓ Wispr Flow: "; } }
