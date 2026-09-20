@@ -20,8 +20,7 @@ in step with the Dodo product and the app's `Brand.swift`.
 
 SEO lives in the `<head>` of each page and can't come from JS: canonical and Open Graph URLs,
 the JSON-LD (`SoftwareApplication` + `FAQPage` on the home page), `robots.txt` and
-`sitemap.xml`. The domain is `https://typevoice.ai` everywhere (`CNAME` holds it for GitHub
-Pages); if it ever changes, replace it in one go:
+`sitemap.xml`. The domain is `https://typevoice.ai` everywhere; if it ever changes, replace it in one go:
 
     grep -rl "typevoice.ai" . | xargs sed -i '' 's|https://typevoice.ai|https://your.domain|g'
 
@@ -33,4 +32,6 @@ On a rebrand, also replace "TypeVoice" in the `<title>`, `og:*` and JSON-LD tags
 `assets/fonts/` (SIL OFL) so the site makes no third-party requests, which the privacy
 policy promises.
 
-Deploy: it's plain HTML. Drop the folder on GitHub Pages, Cloudflare Pages, Netlify or Vercel.
+Deploy: `make deploy` — a Cloudflare Pages project called `typevoice` (direct upload, account
+Priyam Ventures), served at https://typevoice.ai and https://typevoice.pages.dev. `make preview`
+serves the folder locally on port 8787.
