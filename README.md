@@ -32,8 +32,8 @@ and in the app: `Brand.website` in `Sources/TypeVoice/Support/Brand.swift`, `SUF
 
 On a rebrand, also replace "TypeVoice" in the `<title>`, `og:*` and JSON-LD tags, and re-render
 `assets/og.png` (1200×630, the social preview). The display font is self-hosted in
-`assets/fonts/` (SIL OFL) so the site makes no third-party requests, which the privacy
-policy promises.
+`assets/fonts/` (SIL OFL). The only script from another origin is our self-hosted Umami
+analytics (cookie-free; disclosed in the privacy policy).
 
 Deploy: `make deploy` — a Cloudflare Pages project called `typevoice` (direct upload, account
 Priyam Ventures), served at https://typevoice.ai and https://typevoice.pages.dev. `make preview`
