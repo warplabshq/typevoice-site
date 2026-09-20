@@ -3,7 +3,7 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png"><link rel="icon" type="image/png" sizes="512x512" href="assets/icon.png"><link rel="apple-touch-icon" href="assets/icon.png">
 <meta name="theme-color" content="#0b0b0d" media="(prefers-color-scheme: dark)"><meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-<link rel="stylesheet" href="site.css?v=36"><script defer src="https://warplabs-umami.up.railway.app/script.js" data-website-id="d8466229-68b8-46ef-9cb0-2fd67875e716"></script><script src="site.js?v=17" defer></script></head>
+<link rel="stylesheet" href="site.css?v=37"><script defer src="https://warplabs-umami.up.railway.app/script.js" data-website-id="d8466229-68b8-46ef-9cb0-2fd67875e716"></script><script src="site.js?v=18" defer></script></head>
 <body>
 <header class="nav wrap"><a class="brand" href="/"><img src="assets/icon.png" alt="TypeVoice app icon" width="26" height="26"><span data-brand="name">TypeVoice</span></a><nav><a href="/#features">Features</a><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a><a href="/support">Support</a><a href="/changelog">What's new</a><a class="navcta" data-download href="#">Download</a></nav></header>
 <main class="legal thanks">
@@ -25,13 +25,15 @@
 <script>
   // Dodo appends ?license_key=… (and payment_id) to the return URL after a successful purchase.
   (function () {
-    var q = new URLSearchParams(location.search), key = (q.get("license_key") || "").trim();
-    if (!key) return;
+    // Buying more than one copy yields several keys, comma-separated; show them all, open the first.
+    var q = new URLSearchParams(location.search);
+    var keys = (q.get("license_key") || "").split(",").map(function (k) { return k.trim(); }).filter(Boolean);
+    if (!keys.length) return;
     document.getElementById("nokey").hidden = true; document.getElementById("haskey").hidden = false;
-    document.getElementById("key").textContent = key;
-    document.getElementById("open").href = "typevoice://activate?key=" + encodeURIComponent(key);
+    document.getElementById("key").textContent = keys.join("\n");
+    document.getElementById("open").href = "typevoice://activate?key=" + encodeURIComponent(keys[0]);
     document.getElementById("copy").addEventListener("click", function (e) {
-      navigator.clipboard.writeText(key).then(function () { e.target.textContent = "Copied"; setTimeout(function () { e.target.textContent = "Copy"; }, 1600); });
+      navigator.clipboard.writeText(keys.join("\n")).then(function () { e.target.textContent = "Copied"; setTimeout(function () { e.target.textContent = "Copy"; }, 1600); });
     });
     // Keep the key out of the address bar and browser history once it's on screen.
     if (history.replaceState) history.replaceState(null, "", location.pathname);

@@ -336,7 +336,7 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 
 /* Thank-you page (Dodo return URL). */
 .thanks .key { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 14px 0 18px; }
-.thanks .key code { font-size: 20px; letter-spacing: .04em; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+.thanks .key code { font-size: 20px; letter-spacing: .04em; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); white-space: pre-line; }
 .thanks .copy { height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-size: 14px; cursor: pointer; }
 .thanks .copy:hover { border-color: var(--text); }
 .thanks .cta-row { justify-content: flex-start; margin: 6px 0 10px; }
