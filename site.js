@@ -152,6 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       let name = g.country;
       try { name = new Intl.DisplayNames(["en"], { type: "region" }).of(g.country) || g.country; } catch (_) {}
+      // The flag, from the country code (two regional-indicator letters). Windows has no flag
+      // glyphs and would show "IN", so it goes without.
+      if (/^[A-Z]{2}$/.test(g.country) && !/Win/.test(navigator.platform))
+        name = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65)) + "\u2009" + name;
       const p1 = local(list), p2 = local(team);
       heroPrice.textContent = `About ${p1} in ${name} · One-time purchase`;
       const tag = document.querySelector(".price-tag"); if (tag) {
