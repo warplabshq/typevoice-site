@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.1</title>
-            <pubDate>Sun, 20 Sep 2026 09:18:18 +0530</pubDate>
-            <sparkle:version>101</sparkle:version>
-            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+            <title>1.0.2</title>
+            <pubDate>Sun, 20 Sep 2026 22:18:22 +0530</pubDate>
+            <sparkle:version>102</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.1 — 20 September 2026</h1><ul><li>Everything about how the text reads now lives under Style: numbers as digits, paragraphs from pauses, spoken commands, filler and stutter cleanup, and Smart cleanup with its Apple Intelligence status. Settings keeps the trigger, microphone, indicator and updates.</li><li>Settings has an About section: the version, Check for Updates, the automatic-check switch and &quot;What&#x27;s new&quot;. Check for Updates is also in the app menu and the menu bar menu.</li><li>Links from the app open the site&#x27;s clean addresses.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.2 — 20 September 2026</h1><ul><li>The License tab shows the price for your country, where there is one: a flag, the local figure on the Buy buttons, and what the checkout will add for tax.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.1/TypeVoice-1.0.1.zip" length="5727087" type="application/octet-stream" sparkle:edSignature="huBQiWAvJtUZKuh0nwvBeor82fyvZF1EikSIWNZ67L8Rrs1OryiWpg6HTjQcRPD1J2kmyqDgOybnrRP7VW4/BQ=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.2/TypeVoice-1.0.2.zip" length="5738964" type="application/octet-stream" sparkle:edSignature="Y5k7MQc36T3o/LF5a++XEqq4s2VLIto4LlbLopMHmmSuHHxf4PtrTXwAst48l8f5ObE3uvrNanSqrTcT/qf5Cw=="/>
         </item>
     </channel>
 </rss>
