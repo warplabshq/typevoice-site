@@ -1,3 +1,7 @@
+// www → apex. Pages' _redirects can't do host-level redirects; a Cloudflare Redirect Rule does
+// it before this runs, and this is the fallback until that rule exists.
+if (location.hostname === "www.typevoice.ai") location.replace("https://typevoice.ai" + location.pathname + location.search + location.hash);
+
 // One place for everything a rebrand touches. Text nodes with data-brand="key" fill from here.
 window.SITE = {
   name: "TypeVoice",
