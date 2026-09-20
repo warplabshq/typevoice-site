@@ -142,22 +142,21 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("/geo" + location.search).then(r => r.ok ? r.json() : null).then(g => {
       if (!g || !g.personal) return;
       const money = (n) => { try { return new Intl.NumberFormat("en", { style: "currency", currency: g.currency, maximumFractionDigits: 0 }).format(n); } catch (_) { return g.currency + " " + n; } };
-      let name = g.country;
-      try { name = new Intl.DisplayNames(["en"], { type: "region" }).of(g.country) || g.country; } catch (_) {}
-      // The flag, from the country code (two regional-indicator letters). Windows has no flag
-      // glyphs and would show "IN", so it goes without.
-      if (/^[A-Z]{2}$/.test(g.country) && !/Win/.test(navigator.platform))
-        name = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65)) + " " + name;
+      // Just the flag, no country name: "you're in 🇮🇳" is enough. Windows has no flag glyphs
+      // and would show "IN", so it gets the plain price instead.
+      if (!/^[A-Z]{2}$/.test(g.country) || /Win/.test(navigator.platform)) return;
+      const flag = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
       const p1 = money(g.personal), p2 = money(g.team);
-      heroPrice.textContent = `${p1} in ${name} · One-time purchase`;
+      const pill = `<span class="offer">${flag} A special price for you</span>`;
+      heroPrice.innerHTML = `${pill}<br>${p1} <s>$79</s> · One-time purchase`;
       const tag = document.querySelector(".price-tag"); if (tag) {
-        tag.querySelector("span").textContent = p1;
-        tag.querySelector("small").textContent = `in ${name}, once, plus ${g.tax} · $79 elsewhere`;
+        tag.querySelector("span").innerHTML = `${p1} <s>$79</s>`;
+        tag.querySelector("small").textContent = `${flag} special price · once, plus ${g.tax}`;
       }
-      const tp = document.getElementById("team-price"); if (tp) tp.textContent = p2;
+      const tp = document.getElementById("team-price"); if (tp) tp.innerHTML = `${p2} <s>$299</s>`;
       const note = document.getElementById("price-note"); if (note) note.textContent =
-        `A price set for ${name}, applied at checkout by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
-      const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · ${p1} once`;
+        `${flag} You're in one of the few places with a special price; the checkout applies it by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
+      const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · ${flag} ${p1} once`;
       if (window.umami && umami.track) umami.track("regional-price", { country: g.country });
     }).catch(() => {});
   }
