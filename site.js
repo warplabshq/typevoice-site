@@ -79,7 +79,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const tkOut = document.getElementById("tk-out"), tkIn = document.getElementById("tk-in");
   if (tkOut && tkIn) {
     const speed = 44; // px per second
-    const clean = "Can we move the launch review to Wednesday at 3? Wednesday works better for the design team.   Shipped the new export flow to VidAI. Two things to watch: cold start, and the retry logic.   Groceries: milk, eggs, bread. Also call the dentist on Monday.   Hey, quick one: the invoice for March is still open, can you nudge them?   I think we should hold the release till the crash on Intel is fixed.   ";
+    // Real dictations, with a few lines people have said out loud before us tucked in between.
+    const lines = [
+      "Can we move the launch review to Wednesday at 3? Wednesday works better for the design team.",
+      "There was an idea\u2026 to bring together a group of remarkable people.",
+      "Shipped the new export flow to VidAI. Two things to watch: cold start, and the retry logic.",
+      "Houston, we have a problem.",
+      "Groceries: milk, eggs, bread. Also call the dentist on Monday.",
+      "Do or do not. There is no try.",
+      "Hey, quick one: the invoice for March is still open, can you nudge them?",
+      "Roads? Where we're going, we don't need roads.",
+      "I think we should hold the release till the crash on Intel is fixed.",
+      "I am Iron Man.",
+      "Draft to Sam: loved the deck, two comments on slide four, otherwise ship it.",
+      "Elementary, my dear Watson.",
+      "Note to self: the good coffee is in the second cupboard, not the first.",
+      "With great power comes great responsibility.",
+      "Standup: yesterday the migration, today the flaky test, no blockers.",
+      "Just keep swimming.",
+      "Avengers, assemble.",
+    ];
+    const clean = lines.join("   ") + "   ";
     tkOut.innerHTML = `<span>${clean}</span><span>${clean}</span>`;
     const fit = () => { tkOut.style.animationDuration = (tkOut.scrollWidth / 2 / speed) + "s"; };
     fit(); addEventListener("resize", fit);
