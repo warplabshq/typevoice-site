@@ -31,9 +31,11 @@ h1 em, h2 em { font-style: italic; color: var(--text); }
 main, footer { position: relative; z-index: 1; }
 
 /* ---------- nav ---------- */
-header.nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; height: 60px;
+/* The bar spans the whole viewport (blur and hairline edge to edge); its contents sit in the column. */
+header.nav { position: sticky; top: 0; z-index: 10;
   backdrop-filter: saturate(160%) blur(16px); -webkit-backdrop-filter: saturate(160%) blur(16px);
   background: color-mix(in srgb, var(--bg) 72%, transparent); border-bottom: 1px solid transparent; transition: border-color .3s; }
+header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
 header.nav.scrolled { border-bottom-color: var(--line); }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; color: var(--text); } .brand:hover { text-decoration: none; }
 .brand img { width: 28px; height: 28px; border-radius: 7px; display: block; }
