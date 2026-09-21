@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.8</title>
-            <pubDate>Mon, 21 Sep 2026 09:57:15 +0530</pubDate>
-            <sparkle:version>108</sparkle:version>
-            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
+            <title>1.0.9</title>
+            <pubDate>Tue, 22 Sep 2026 04:09:36 +0530</pubDate>
+            <sparkle:version>109</sparkle:version>
+            <sparkle:shortVersionString>1.0.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.8 — 21 September 2026</h1><ul><li>Microphones, sorted out. The Mac&#x27;s own mic is now the default even when AirPods or another Bluetooth headset is connected: it hears you better, starts instantly, and doesn&#x27;t drop the music on your headset to headset quality while you talk. Pick a headset under Settings › Microphone if you need to whisper. A mic that changes or disappears mid-sentence no longer kills dictation until the next launch; the sentence finishes with what was heard.</li><li>Insertion can&#x27;t be held hostage by a busy app: Accessibility questions time out in 0.3 s and paste takes over.</li><li>Summary: one Export button (the save panel picks the format), and Clear History moved from the toolbar to the end of the list. A tidier Dictionary row and Privacy page.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.9 — 22 September 2026</h1><ul><li>Word packs. The Dictionary tab now carries lists of spellings the model has no way to know: Developer tools (3,600 names from Homebrew, PyPI and Wikidata, plus our own picks) and Internet slang (hand-picked). A pack only steps in where the model was unsure of a word, your own Dictionary always wins, and Import a list… takes any text file, one term per line. Files inside the app; nothing is fetched.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.8/TypeVoice-1.0.8.zip" length="5781393" type="application/octet-stream" sparkle:edSignature="hTpgukBz3taXKA0y70938SUArzG/tQxa0dG8+rh8wPPB7XSOoOp+gjPdO50q0VUSet9RPcxJwndTe1DNE0QeBQ=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.9/TypeVoice-1.0.9.zip" length="5849005" type="application/octet-stream" sparkle:edSignature="TEslhm3fxuPlY+KcLZWHKiShq0/cgWFQ6+L2iLjBpVpPN62/88/xxt8Rlv1bIJ3aAhDs8e5Yr9Gcew9lEgyXBA=="/>
         </item>
     </channel>
 </rss>
