@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.12</title>
-            <pubDate>Tue, 22 Sep 2026 07:49:46 +0530</pubDate>
-            <sparkle:version>112</sparkle:version>
-            <sparkle:shortVersionString>1.0.12</sparkle:shortVersionString>
+            <title>1.0.13</title>
+            <pubDate>Wed, 23 Sep 2026 11:14:56 +0530</pubDate>
+            <sparkle:version>113</sparkle:version>
+            <sparkle:shortVersionString>1.0.13</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.12 — 22 September 2026</h1><ul><li>&quot;Reddit&quot; stays &quot;Reddit&quot;. A word pack was turning it into &quot;Rediff&quot; because the two sound alike and the model had been a little unsure. A spelling the app already knows, whether a household name, a pack term or a word in your Dictionary, is now never replaced.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.13 — 23 September 2026</h1><ul><li>Transcription bug fixes.</li><li>TypeVoice now shows in the Dock while its window is open, and steps back to the menu bar when you close it.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.12/TypeVoice-1.0.12.zip" length="11635195" type="application/octet-stream" sparkle:edSignature="jqev6zJ8vEFdBSt0Kl13zuddXNHnrPRqCoL9DRFCxkto2MREBJ8jSUVGzAOPKaTpCh2kyj00qBf78VJZKQzzAQ=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.13/TypeVoice-1.0.13.zip" length="11646050" type="application/octet-stream" sparkle:edSignature="3Wg4tTwGq+5HnrcHvbeHV7ao+8/VmTewXfPeYBIgsfY/AZ1seTlhB9kS56DncQhoI7NmjpRp7Yi9ldd3yz1QCg=="/>
         </item>
     </channel>
 </rss>
