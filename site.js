@@ -13,7 +13,7 @@ window.SITE = {
   released: true,           // false makes every Download button read "Available soon"
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
-  updated: "September 20, 2026",
+  updated: "September 26, 2026",
   price: "$79",
   priceNote: "once, after 7 free days",
   refundDays: "14",
@@ -40,7 +40,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (a.classList.contains("cta") || a.classList.contains("navcta")) a.innerHTML = a.innerHTML.replace(/Download( for Mac)?/, "Available soon");
   }
   // Checkout links carry the return page, so the key lands on /thanks after payment.
-  const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks");
+  // If the visit came from a Google ad, keep Google's click id in this browser and hand it to
+  // checkout as metadata, so a sale can be matched to the ad. Kept 90 days, then forgotten.
+  let click = "", fromAd = false;
+  try {
+    const q = new URLSearchParams(location.search), id = q.get("gclid") || q.get("gbraid") || q.get("wbraid");
+    if (id) localStorage.setItem("tv_click", JSON.stringify({ id, kind: q.get("gclid") ? "gclid" : q.get("gbraid") ? "gbraid" : "wbraid", at: Date.now() }));
+    const saved = JSON.parse(localStorage.getItem("tv_click") || "null");
+    if (saved && Date.now() - saved.at < 90 * 864e5) { fromAd = true; click = "&metadata_" + saved.kind + "=" + encodeURIComponent(saved.id) + "&metadata_click_at=" + encodeURIComponent(new Date(saved.at).toISOString()); }
+    else if (saved) localStorage.removeItem("tv_click");
+  } catch (_) {}
+  // Google's ad tag, only for those ad visits: it counts a download or a purchase against the
+  // ad. Everyone else never loads a Google script. EEA, UK and Swiss visits run in Google's
+  // consent mode with ad cookies off. On /thanks the license key is already out of the URL
+  // (thanks.html strips it first) and only the payment id goes along. The page is reported as
+  // /purchased, and the sale counts once per payment id (the transaction id).
+  if (fromAd) {
+    const ADS = "AW-18475319144";
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied",
+      region: ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","LV","LI","LT","LU","MT","NL","NO","PL","PT","RO","SK","SI","ES","SE","GB","CH"] });
+    gtag("consent", "default", { ad_storage: "granted", ad_user_data: "granted", ad_personalization: "denied", analytics_storage: "denied" });
+    gtag("js", new Date());
+    const thanks = location.pathname.replace(/\.html$/, "") === "/thanks";
+    gtag("config", ADS, thanks ? { send_page_view: false, page_location: location.origin + "/purchased", page_referrer: "" } : {});
+    if (thanks && window.TV_PAYMENT) gtag("event", "conversion", { send_to: ADS + "/XCx8COHg44UdEOj-2-lE", value: 79, currency: "USD", transaction_id: window.TV_PAYMENT });
+    for (const a of document.querySelectorAll("a[data-download]"))
+      a.addEventListener("click", () => gtag("event", "conversion", { send_to: ADS + "/R8eHCPuO4oUdEOj-2-lE", transport_type: "beacon" }));
+    const s = document.createElement("script"); s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + ADS; document.head.appendChild(s);
+  }
+  const back = "?redirect_url=" + encodeURIComponent(SITE.domain + "/thanks") + click;
   for (const a of document.querySelectorAll("a[data-checkout]")) { a.href = SITE.checkoutURL + back; a.dataset.umamiEvent = "buy"; a.dataset.umamiEventPlace = a.closest("section")?.id || "page"; }
   for (const a of document.querySelectorAll("a[data-checkout-team]")) { a.href = SITE.teamCheckoutURL + back; a.dataset.umamiEvent = "buy-team"; }
   document.title = document.title.replace("TypeVoice", SITE.name);
