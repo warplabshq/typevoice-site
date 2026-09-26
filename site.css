@@ -67,13 +67,13 @@ h3 { font-size: 17px; font-weight: 600; }
 .cue:hover { color: var(--text); border-color: var(--text); transform: translateY(2px); text-decoration: none; }
 /* The ticker in the hero: one straight band at the icon's height. Speech (bars) flows in from
    the left, the app sits in the middle, the typed sentence streams out to the right. */
-.ticker { position: relative; contain: layout paint; width: 100vw; margin: 0 0 var(--s5) calc(50% - 50vw); height: 96px; pointer-events: none; }
+.ticker { position: relative; contain: layout; overflow-x: clip; overflow-y: visible; width: 100vw; margin: 0 0 var(--s5) calc(50% - 50vw); height: 96px; pointer-events: none; }
 .tk-in, .tk-out { position: absolute; top: 0; height: 100%; }
 .tk-in { left: 0; width: calc(50% - 34px); -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000); mask-image: linear-gradient(90deg, transparent, #000 22%, #000); }
 .tk-out { left: calc(50% + 34px); right: 0; overflow: hidden; display: flex; align-items: center; -webkit-mask-image: linear-gradient(90deg, #000, #000 70%, transparent); mask-image: linear-gradient(90deg, #000, #000 70%, transparent); }
 .tk-icon { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; transform: translate(-50%, -50%); z-index: 2; border-radius: 15px;
   box-shadow: 0 12px 34px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08); }
-@media (prefers-color-scheme: light) { .tk-icon { box-shadow: 0 10px 28px rgba(0,0,0,.22), 0 0 0 1px rgba(0,0,0,.06); } }
+@media (prefers-color-scheme: light) { .tk-icon { box-shadow: 0 8px 22px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.06); } }
 .track { display: flex; white-space: nowrap; animation: tape 60s linear infinite; }
 /* Anything scrolled out of view stops animating: the page shouldn't tax the GPU for what nobody sees. */
 .offscreen, .offscreen * { animation-play-state: paused !important; }
