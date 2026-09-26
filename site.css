@@ -106,8 +106,8 @@ h3 { font-size: 17px; font-weight: 600; }
 .strip li:first-child { border-left: 0; }
 .strip b { font-size: 15px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; } .strip span { color: var(--dim); font-size: 14px; }
 /* The two numbers get colour; the rest stay quiet. */
-:root { --c-blue: #5aa4ff; --c-green: #5fd68a; --c-purple: #b48fff; --c-pink: #ff85b6; --tk-bar: #7ea8ec; }
-@media (prefers-color-scheme: light) { :root { --c-blue: #1f6fe0; --c-green: #1f9d55; --c-purple: #7a4fd6; --c-pink: #d8397a; --tk-bar: #94b9f6; } }
+:root { --c-blue: #5aa4ff; --c-green: #5fd68a; --c-purple: #b48fff; --c-pink: #ff85b6; --c-amber: #f0a53c; --tk-bar: #7ea8ec; }
+@media (prefers-color-scheme: light) { :root { --c-blue: #1f6fe0; --c-green: #1f9d55; --c-purple: #7a4fd6; --c-pink: #d8397a; --c-amber: #b36b00; --tk-bar: #94b9f6; } }
 .strip li:nth-child(1) b { color: var(--c-green); } .strip li:nth-child(2) b { color: var(--c-blue); }
 .netglyph { align-self: center; margin-right: 2px; width: 18px; height: 14px; fill: none; stroke: var(--c-green); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
 
@@ -376,3 +376,82 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
 .vs .cmp td.good::before { content: "✓ "; color: var(--c-green); }
 .vs .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: var(--s4); } .vs .fine { color: var(--faint); font-size: 12.5px; margin-top: var(--s4); }
 @media (max-width: 640px) { .vs .cmp thead { display: none; } .vs .cmp tbody th { width: auto; } .vs .cmp tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); } .vs .cmp th, .vs .cmp td { display: block; border: 0; padding: 3px 0; width: auto; } .vs .cmp td::before { font-weight: 600; color: var(--faint); } .vs .cmp td:nth-child(2)::before { content: "TypeVoice: "; } .vs .cmp td.good:nth-child(2)::before { content: "✓ TypeVoice: "; } .vs .cmp td:nth-child(3)::before { content: "Wispr Flow: "; } .vs .cmp td.good:nth-child(3)::before { content: "✓ Wispr Flow: "; } }
+
+/* The full comparison page: the landing's pieces, arranged around one question — where does the voice go. */
+.vs-hero { min-height: 0; padding: var(--s6) 0 var(--s2); }
+.vs-hero h1 { font-size: clamp(46px, 7.2vw, 84px); line-height: 1; }
+.vs-hero .cta-row { gap: 22px; }
+.nw { white-space: nowrap; }
+.vs-x { font-style: italic; color: var(--faint); font-size: .6em; margin: 0 .06em; vertical-align: .1em; }
+.vs-mark { display: flex; justify-content: center; margin-bottom: var(--s4); }
+.vs-mark img { width: 56px; height: 56px; border-radius: 13px; box-shadow: 0 12px 34px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08); }
+@media (prefers-color-scheme: light) { .vs-mark img { box-shadow: 0 8px 22px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.06); } }
+/* At a glance: TypeVoice's answer large, Wispr Flow's under it. */
+.glance { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); padding-top: var(--s5); }
+.gcard { min-width: 0; display: flex; flex-direction: column; gap: 3px; padding: 18px 18px 16px; border-radius: var(--r); border: 1px solid var(--line); background: var(--card); }
+.gcard .gic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; margin-bottom: 10px; color: var(--green); background: color-mix(in srgb, var(--green) 13%, transparent); }
+.gcard .gic svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.gcard small { color: var(--faint); font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.gcard b { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+.gcard .them { color: var(--faint); font-size: 13px; }
+/* Two trips side by side: the landing's privacy diagram, and the same parts with the middle moved to someone else's servers. */
+.trip { display: grid; gap: var(--s4); margin-top: var(--s4); }
+.trip .flow { margin: 0; }
+.lane-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0 0 12px 2px; }
+.lane-head img { width: 22px; height: 22px; border-radius: 6px; display: block; } .lane-head b { font-size: 15px; font-weight: 600; }
+.tag-ok, .tag-away { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+.tag-ok { color: var(--green); background: color-mix(in srgb, var(--green) 13%, transparent); }
+.tag-away { color: var(--c-amber); background: color-mix(in srgb, var(--c-amber) 13%, transparent); }
+.flow.away { grid-template-columns: minmax(0, 1fr); background: radial-gradient(60% 70% at 50% 0%, color-mix(in srgb, var(--c-amber) 9%, transparent), transparent 70%), var(--card); }
+.flow .zone { position: relative; flex: 0 0 auto; padding: 40px 20px 20px; border-radius: 20px; }
+.flow .zone.mine { border: 1px solid color-mix(in srgb, var(--green) 45%, var(--line)); background: linear-gradient(rgba(255,255,255,.035), rgba(255,255,255,.01)); }
+.flow .zone.cloud { border: 1px dashed color-mix(in srgb, var(--c-amber) 60%, var(--line2)); background: color-mix(in srgb, var(--c-amber) 6%, transparent); }
+.flow .zone-t { position: absolute; left: 18px; top: 13px; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); white-space: nowrap; }
+.flow .zone.cloud .zone-t { color: var(--c-amber); }
+.flow.away .wire { margin-top: 40px; }   /* level with the pill's middle: the zones carry a 40px title band */
+.flow.away .fly.wave i { background: var(--c-amber); }
+.flow .wlabel { position: absolute; left: 50%; top: calc(50% + 12px); transform: translateX(-50%); font-size: 11px; color: var(--faint); white-space: nowrap; }
+.flow.away .zone.cloud .tile-n { animation: busy 6s linear infinite; }
+@keyframes busy { 0%, 30%, 66%, 100% { box-shadow: 0 6px 18px rgba(0,0,0,.25); } 38%, 58% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--c-amber) 22%, transparent), 0 6px 18px rgba(0,0,0,.25); } }
+.source { margin: var(--s3) 0 0; color: var(--faint); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .flow.away .zone.cloud .tile-n { animation: none; } }
+@media (max-width: 900px) and (min-width: 701px) { .flow .wlabel { display: none; } }
+@media (max-width: 700px) { .flow .zone { padding: 38px 18px 16px; } .flow.away .pipe .wire { margin-top: 0; } .flow .wlabel { left: calc(50% + 12px); top: 50%; transform: translateY(-50%); } }
+/* What you pay, year by year: one bar that never grows, one that does. */
+.cost-card { display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s4); margin-top: var(--s4); padding: 30px; border-radius: var(--r-lg); border: 1px solid var(--line);
+  background: radial-gradient(60% 80% at 100% 0%, color-mix(in srgb, var(--green) 10%, transparent), transparent 70%), var(--card); }
+.chart { min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.chart-legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--dim); }
+.chart-legend .k::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 7px; vertical-align: -1px; background: var(--c); }
+.yr { display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; row-gap: 7px; align-items: center; }
+.yr .yl { grid-row: span 2; font-size: 13px; color: var(--dim); }
+.bar { display: flex; align-items: center; gap: 10px; height: 14px; }
+.bar i { display: block; flex: none; height: 100%; width: 0; border-radius: 999px; background: var(--c); transition: width 1.1s cubic-bezier(.2,.8,.2,1) var(--d, 0s); }
+.reveal.in .bar i { width: calc((100% - 56px) * var(--p)); }
+.bar b { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; opacity: 0; transition: opacity .4s ease calc(var(--d, 0s) + .7s); }
+.reveal.in .bar b { opacity: 1; }
+.bar.tv, .k.tv { --c: var(--green); }
+.bar.wf, .k.wf { --c: color-mix(in srgb, var(--text) 26%, transparent); } .bar.wf b { color: var(--dim); }
+.chart-note { margin: 2px 0 0; color: var(--faint); font-size: 12.5px; line-height: 1.5; }
+@media (prefers-reduced-motion: reduce) { .bar i, .bar b { transition: none; } }
+.cmp-card { margin-top: var(--s4); padding: 4px 22px; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--card); }
+.vs .cmp-card .cmp { margin: 0; }
+.vs .cmp-card .cmp tbody tr:last-child th, .vs .cmp-card .cmp tbody tr:last-child td { border-bottom: 0; }
+.th-app { display: inline-flex; align-items: center; gap: 8px; color: var(--text); } .th-app img { width: 18px; height: 18px; border-radius: 5px; }
+.vs-page .section .cta-row { justify-content: flex-start; gap: 22px; margin-top: var(--s4); }
+.vs-page .bento { margin-top: var(--s4); }
+.choose { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); margin-top: var(--s4); }
+.choose > div { display: flex; flex-direction: column; padding: 26px; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--card); }
+.choose h3 { display: flex; align-items: center; gap: 10px; font-size: 16.5px; } .choose h3 img { width: 22px; height: 22px; border-radius: 6px; }
+.choose .pick { border-color: color-mix(in srgb, var(--green) 40%, var(--line)); background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--green) 9%, transparent), transparent 70%), var(--card); }
+.choose .ticks { margin-bottom: 24px; } .choose .cta { align-self: flex-start; margin-top: auto; }
+.plain { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 8px; } .plain li { color: var(--dim); padding-left: 24px; position: relative; }
+.plain li::before { content: "–"; position: absolute; left: 2px; color: var(--faint); }
+.vs-fine { max-width: 640px; margin: 0 auto var(--s6); text-align: center; color: var(--faint); font-size: 12.5px; }
+@media (max-width: 760px) {
+  .glance { grid-template-columns: 1fr 1fr; padding-top: var(--s4); } .gcard { padding: 16px 14px 14px; } .gcard b { font-size: 17px; }
+  .vs-mark img { width: 48px; height: 48px; border-radius: 11px; }
+  .cost-card { grid-template-columns: 1fr; padding: 22px 18px; } .cost-card .price-right { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 22px; }
+  .yr { grid-template-columns: 1fr; } .yr .yl { grid-row: auto; }
+  .cmp-card { padding: 4px 16px; } .choose { grid-template-columns: 1fr; } .choose > div { padding: 22px 20px; }
+}

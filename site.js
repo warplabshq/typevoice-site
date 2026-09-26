@@ -310,9 +310,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })();
   }
-  // Privacy diagram: the clean chip lands in the field and the sentence types out, every cycle.
-  const flowTyped = document.getElementById("flow-typed"), flyClean = document.querySelector(".flow .fly.clean");
-  if (flowTyped && flyClean) {
+  // Privacy diagrams: the clean chip lands in the field and the sentence types out, every cycle.
+  for (const flow of document.querySelectorAll(".flow")) {
+    const flowTyped = flow.querySelector(".mfield span"), flyClean = flow.querySelector(".fly.clean");
+    if (!flowTyped || !flyClean) continue;
     const sentence = "Can we move the…";
     let timers = [];
     const cycle = () => {
