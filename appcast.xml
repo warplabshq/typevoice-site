@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.18</title>
-            <pubDate>Mon, 28 Sep 2026 11:37:54 +0530</pubDate>
-            <sparkle:version>118</sparkle:version>
-            <sparkle:shortVersionString>1.0.18</sparkle:shortVersionString>
+            <title>1.0.19</title>
+            <pubDate>Tue, 29 Sep 2026 10:47:06 +0530</pubDate>
+            <sparkle:version>119</sparkle:version>
+            <sparkle:shortVersionString>1.0.19</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.18 — 28 September 2026</h1><ul><li>Hyphens where a pair of words describes the next one: &quot;a one-time purchase&quot;, &quot;a 7-day trial&quot;, &quot;a follow-up email&quot;. &quot;It syncs in real time&quot; and &quot;I&#x27;ll follow up&quot; stay as they are.</li><li>Transcription bug fixes.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.19 — 29 September 2026</h1><ul><li>Thinking out loud stays out of your text: &quot;you know&quot;, &quot;I mean&quot;, &quot;like&quot;, &quot;anyway&quot; and &quot;I don&#x27;t know&quot; go when they only fill a gap, and so do restarts like &quot;I&#x27;m waiting for, I&#x27;m waiting for&quot;. &quot;Do you know the answer&quot; and &quot;I like it&quot; stay as they are. Part of Remove fillers in Style.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.18/TypeVoice-1.0.18.zip" length="11683074" type="application/octet-stream" sparkle:edSignature="rocaM/9dMe5BZm+oYTuPPeMFmgYAPRHmiTHCIEO6HaEqyTRTo1sAnEXu1lAdKRWcKD4B67acSCB1QEyX4rIDAw=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.19/TypeVoice-1.0.19.zip" length="11694590" type="application/octet-stream" sparkle:edSignature="X0kKHTZIG9P04ICt3f9ZeI9jzEXXlxqWCKBU45V+IOcBbnj7YyATRgWgHZlcTGcrqXV5hGgYPdT7PdOi/LPFAA=="/>
         </item>
     </channel>
 </rss>
