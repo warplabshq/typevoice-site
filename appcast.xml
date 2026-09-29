@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.20</title>
-            <pubDate>Tue, 29 Sep 2026 14:33:18 +0530</pubDate>
-            <sparkle:version>120</sparkle:version>
-            <sparkle:shortVersionString>1.0.20</sparkle:shortVersionString>
+            <title>1.0.21</title>
+            <pubDate>Tue, 29 Sep 2026 19:25:06 +0530</pubDate>
+            <sparkle:version>121</sparkle:version>
+            <sparkle:shortVersionString>1.0.21</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.20 — 29 September 2026</h1><ul><li>The pill shows the moment you press your key, even after the Mac has been idle, and the mic is ready about ten times sooner. Before, the first press after a while could end with nothing recorded.</li><li>&quot;First&quot; stays a word (&quot;First, we ship&quot;), and &quot;one three&quot; is no longer typed as a time.</li><li>Transcription bug fixes.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.21 — 29 September 2026</h1><ul><li>The pill no longer sits silent after the Mac has been idle: the mic is ready in about a tenth of a second, not three.</li><li>Dictations no longer end mid-sentence when something else on the Mac plays sound or the audio setup changes.</li><li>Text goes into the app you dictated into, or is copied if that app isn&#x27;t there any more; it never lands in another app, is never typed twice, and your clipboard comes back as it was.</li><li>Terminal&#x27;s Secure Keyboard Entry no longer blocks dictation everywhere else.</li><li>Lists and paragraphs keep their lines when you mention a number; &quot;one second&quot;, &quot;a two year old&quot;, &quot;the blue one&quot; read as said; &quot;2x&quot;, &quot;20%&quot;.</li><li>&quot;dodged that bullet&quot; and &quot;a new line of shoes&quot; stay sentences; &quot;the voice&quot; stays &quot;the voice&quot;.</li><li>License: using your key again on the same Mac no longer takes a second seat, a Mac that was offline a long time re-checks instead of showing &quot;trial ended&quot;, and Delete Everything keeps your license.</li><li>Transcription bug fixes.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.20/TypeVoice-1.0.20.zip" length="11704630" type="application/octet-stream" sparkle:edSignature="xPOSKSKsw/4dlTMYVehjKEAMz1NaMnH4Q/5u1Xchpk+qwKFLt4/41D12KKLlrobaFppfFOkNqkKaLwEvF0jHDQ=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.21/TypeVoice-1.0.21.zip" length="11738776" type="application/octet-stream" sparkle:edSignature="agzn7QKRSyK8f++KbNhuJ6N06YLC2KF/FE8Q+U4YFK72g+ngdiRQj2WS74i6eTm8Hp+BRRpFMfS+BgJv/gA7BQ=="/>
         </item>
     </channel>
 </rss>
