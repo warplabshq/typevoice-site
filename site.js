@@ -323,6 +323,21 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     cycle(); flyClean.addEventListener("animationiteration", cycle);
   }
+  // Landing privacy diagram: when the last dot reaches the app, the sentence types out.
+  for (const pf of document.querySelectorAll(".pflow")) {
+    const field = pf.querySelector(".pf-field span"), first = pf.querySelector(".pf-dot");
+    if (!field) continue;
+    const sentence = "Ship it on Friday?";
+    let timers = [];
+    const cycle = () => {
+      timers.forEach(clearTimeout); timers = [];
+      timers.push(setTimeout(() => { field.textContent = ""; }, 150));
+      for (let i = 1; i <= sentence.length; i++) timers.push(setTimeout(() => { field.textContent = sentence.slice(0, i); }, 5500 + i * 18));
+    };
+    cycle();
+    if (first && getComputedStyle(first).display !== "none") first.addEventListener("animationiteration", cycle);
+    else setInterval(() => { if (!pf.closest(".offscreen")) cycle(); }, 6500);
+  }
   // Pause every animation in sections that are out of view (canvas loops check the same flag).
   const vis = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle("offscreen", !e.isIntersecting)), { rootMargin: "120px 0px" });
   document.querySelectorAll("section, footer").forEach(el => vis.observe(el));

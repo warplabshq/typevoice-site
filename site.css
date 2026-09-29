@@ -221,8 +221,6 @@ h3 { font-size: 17px; font-weight: 600; }
 /* ---------- privacy + faq + final ---------- */
 .story { max-width: 640px; margin: var(--s3) 0 var(--s5); } .story p { font-size: 17px; line-height: 1.65; color: var(--dim); margin: 0 0 14px; }
 .story p:last-child { color: var(--text); }
-.priv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s2); margin-top: var(--s4); }
-.priv-grid div { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 22px; } .priv-grid h3 { margin-bottom: 6px; font-size: 15.5px; } .priv-grid p { margin: 0; color: var(--dim); font-size: 14.5px; }
 .faq { margin-top: var(--s3); border-top: 1px solid var(--line); } .faq details { border-bottom: 1px solid var(--line); padding: 16px 0; }
 .faq summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; } .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: "+"; color: var(--faint); font-weight: 400; font-size: 20px; transition: transform .25s; } .faq details[open] summary::after { transform: rotate(45deg); }
@@ -267,7 +265,7 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
   .bento { grid-template-columns: 1fr; } .tile-b, .tile-b.span2, .tile-b.small { grid-column: span 1; }
   .pair { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); justify-self: center; }
   .price-card { grid-template-columns: 1fr; } .price-right { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
-  .priv-grid { grid-template-columns: 1fr; } .fcols { grid-template-columns: 1fr 1fr; }
+  .fcols { grid-template-columns: 1fr 1fr; }
   .legal h1 { font-size: 28px; }
 }
 
@@ -455,3 +453,53 @@ kbd { font: 13px -apple-system, BlinkMacSystemFont, sans-serif; background: var(
   .yr { grid-template-columns: 1fr; } .yr .yl { grid-row: auto; }
   .cmp-card { padding: 4px 16px; } .choose { grid-template-columns: 1fr; } .choose > div { padding: 22px 20px; }
 }
+
+/* ---------- privacy diagram (landing) ---------- */
+/* Four steps inside one Mac, evenly spaced; a dot walks the wire between them, and the last step types. */
+.pflow { margin: var(--s4) 0 0; padding: 26px; border-radius: var(--r-lg); border: 1px solid var(--line);
+  background: radial-gradient(60% 80% at 50% 0%, color-mix(in srgb, var(--green) 7%, transparent), transparent 70%), var(--card); }
+.pf-mac { padding: 20px 24px 26px; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--green) 40%, var(--line));
+  background: linear-gradient(rgba(255,255,255,.03), rgba(255,255,255,0)); box-shadow: 0 0 0 5px color-mix(in srgb, var(--green) 5%, transparent); }
+.pf-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pf-title { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); }
+.pf-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: var(--green); padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--green) 12%, transparent); }
+.pf-title svg, .pf-badge svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pf-steps { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pf-steps li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 6px; }
+.pf-steps li:not(:last-child)::after { content: ""; position: absolute; top: 28px; left: 50%; right: -50%; border-top: 1.5px solid var(--line2); z-index: 0; }
+.pf-node { position: relative; z-index: 1; height: 56px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.pf-steps b { font-size: 14px; font-weight: 600; color: var(--text); } .pf-steps small { font-size: 12.5px; color: var(--faint); margin-top: 2px; }
+.pf-pill { height: 46px; padding: 0 16px; border-radius: 999px; background: #000; display: flex; align-items: center; gap: 2.5px; box-shadow: 0 10px 26px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.07); }
+.pf-pill i { width: 3px; height: var(--h); border-radius: 2px; background: #fff; animation: mbar 1.6s ease-in-out infinite alternate; }
+.pf-pill i:nth-child(1) { --h: 5.4px } .pf-pill i:nth-child(2) { --h: 10.1px; animation-delay: -.2s } .pf-pill i:nth-child(3) { --h: 17.6px; animation-delay: -.4s } .pf-pill i:nth-child(4) { --h: 25px; animation-delay: -.6s }
+.pf-pill i:nth-child(5) { --h: 15.5px; animation-delay: -.8s } .pf-pill i:nth-child(6) { --h: 21px; animation-delay: -1s } .pf-pill i:nth-child(7) { --h: 11.5px; animation-delay: -1.2s } .pf-pill i:nth-child(8) { --h: 6.8px; animation-delay: -1.4s }
+.pf-tile { position: relative; height: 46px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px; border-radius: 13px; background: var(--bg2); border: 1px solid var(--line2);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18); font-size: 13.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
+.pf-tile svg { fill: none; stroke: var(--dim); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.pf-tile.ai { border-color: transparent; }
+.pf-tile.ai::before { content: ""; position: absolute; inset: -1px; border-radius: 14px; padding: 1px; background: linear-gradient(120deg, #ff8a5b, #ff5c8a, #8a6bff, #4fb8ff, #ff8a5b);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: .85; }
+.pf-field { height: 46px; width: min(100%, 190px); padding: 0 12px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; border-radius: 11px;
+  background: var(--bg2); border: 1px solid var(--line2); font-size: 13.5px; color: var(--text); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.pf-field span { overflow: hidden; } .pf-field .caret { flex: none; height: 16px; }
+.pf-dot { position: absolute; top: 25px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--green); z-index: 0; opacity: 0;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 20%, transparent); animation: pfdot 6s linear infinite; }
+.pf-steps li:nth-child(2) .pf-dot { animation-name: pfdot2; } .pf-steps li:nth-child(3) .pf-dot { animation-name: pfdot3; }
+@keyframes pfdot  { 0% { left: 50%; opacity: 0 } 3% { opacity: 1 } 27% { left: 150%; opacity: 1 } 30%, 100% { left: 150%; opacity: 0 } }
+@keyframes pfdot2 { 0%, 33% { left: 50%; opacity: 0 } 36% { opacity: 1 } 60% { left: 150%; opacity: 1 } 63%, 100% { left: 150%; opacity: 0 } }
+@keyframes pfdot3 { 0%, 66% { left: 50%; opacity: 0 } 69% { opacity: 1 } 93% { left: 150%; opacity: 1 } 96%, 100% { left: 150%; opacity: 0 } }
+.pf-net { display: flex; align-items: center; gap: 12px; margin: 18px 4px 0; color: var(--dim); font-size: 14px; line-height: 1.5; }
+.pf-net b { color: var(--text); font-weight: 600; }
+.pf-off { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; border: 1px dashed var(--line2); }
+.pf-off svg { fill: none; stroke: var(--faint); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.priv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s2); margin-top: var(--s2); }
+.priv-grid div { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 18px 20px; }
+.priv-grid .pg-ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; margin-bottom: 12px; color: var(--green); background: color-mix(in srgb, var(--green) 12%, transparent); }
+.priv-grid .pg-ic svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.priv-grid h3 { margin-bottom: 5px; font-size: 15px; } .priv-grid p { margin: 0; color: var(--dim); font-size: 13.5px; line-height: 1.5; }
+@media (prefers-reduced-motion: reduce) { .pf-dot, .pf-pill i { animation: none; } }
+@media (max-width: 900px) {
+  .pf-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 26px; } .pf-steps li::after, .pf-dot { display: none; }
+  .priv-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .pf-tile { padding: 0 11px; font-size: 12.5px; } .pf-tile svg { display: none; } .pf-steps small { font-size: 11.5px; } .pflow { padding: 14px; } .pf-mac { padding: 18px 14px 22px; } .pf-net { align-items: flex-start; font-size: 13.5px; } .priv-grid { grid-template-columns: 1fr; } }

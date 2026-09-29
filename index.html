@@ -7,7 +7,7 @@
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="TypeVoice — Just talk. It's typed."><meta name="twitter:description" content="A dictation app for Mac that runs entirely on your Mac. Hold a key, talk, and clean, punctuated text lands in any app. Offline, private, no subscription."><meta name="twitter:image" content="https://typevoice.ai/assets/og.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "TypeVoice", "applicationCategory": "UtilitiesApplication", "operatingSystem": "macOS 26 or later (Apple silicon)", "description": "A dictation app for Mac that runs entirely on your Mac. Hold a key, talk, and clean, punctuated text lands in any app. Offline, private, no subscription.", "url": "https://typevoice.ai/", "image": "https://typevoice.ai/assets/og.png", "offers": {"@type": "Offer", "price": "79", "priceCurrency": "USD", "description": "Free for 7 days, then a single purchase of $79. No subscription."}, "author": {"@type": "Organization", "name": "Priyam Ventures"}, "featureList": ["On-device speech recognition on the Neural Engine", "Works offline", "No account, no telemetry", "Hold a key or a chord, or tap to toggle", "Clean-up: fillers, punctuation, numbers, lists", "Personal dictionary", "Optional voice notes you can drag into a chat"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does it need Accessibility and Microphone?", "acceptedAnswer": {"@type": "Answer", "text": "Microphone, to hear you while you hold the key. Accessibility, to notice the key anywhere on the Mac and to type the text into the app you're using. It never reads your screen."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. After the one-time model download on first launch, dictation needs no connection at all."}}, {"@type": "Question", "name": "Which languages?", "acceptedAnswer": {"@type": "Answer", "text": "English, all accents. The model is English-only by design; that's what makes it this accurate and this fast."}}, {"@type": "Question", "name": "How is it different from Wispr Flow?", "acceptedAnswer": {"@type": "Answer", "text": "Wispr Flow transcribes in the cloud (its own docs say transcription always occurs on the cloud) and is a subscription, $12 to $15 a month. TypeVoice transcribes on your Mac's Neural Engine, so your voice never leaves the machine, it works offline, and you buy it once. Wispr Flow covers 100+ languages; TypeVoice does English only, and does it very well."}}, {"@type": "Question", "name": "What happens after the trial?", "acceptedAnswer": {"@type": "Answer", "text": "Dictation pauses until you buy it, once. A license key arrives by email and works on the Macs you use. Everything you dictated stays in Summary."}}, {"@type": "Question", "name": "Is the code public?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. TypeVoice is open source under the GPL v3 on GitHub (github.com/warplabshq/typevoice): read it, audit it, build it. What you buy is the signed, notarized build with automatic updates and support. The name and icon stay trademarks."}}, {"@type": "Question", "name": "Is it on the Mac App Store?", "acceptedAnswer": {"@type": "Answer", "text": "No, on purpose. Sold directly, TypeVoice can type straight into the field you're in through Accessibility instead of pasting, and updates ship the moment they're ready. The app is signed with a Developer ID and notarized by Apple."}}, {"@type": "Question", "name": "Is the price the same everywhere?", "acceptedAnswer": {"@type": "Answer", "text": "Almost. It's $79, charged in your own currency, plus tax where it applies. Five countries have a price set for local purchasing power: ₹2,499 in India, and $24 in Pakistan, Bangladesh, Egypt and Nigeria. The checkout goes by the billing country you enter. Same app, same license, same updates."}}, {"@type": "Question", "name": "Can I use one license on more than one Mac?", "acceptedAnswer": {"@type": "Answer", "text": "Yes: a personal key works on two Macs at once. Deactivate a Mac in the License tab to move the seat. A team key covers five people with two Macs each."}}, {"@type": "Question", "name": "How long can one dictation be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to ten minutes; at that point the words so far are typed and you carry on with the next one. Pauses of any length are fine."}}, {"@type": "Question", "name": "Which Macs?", "acceptedAnswer": {"@type": "Answer", "text": "Any Mac with Apple silicon running macOS 26 or later."}}]}</script>
-<link rel="stylesheet" href="site.css?v=50"><script defer src="https://warplabs-umami.up.railway.app/script.js" data-website-id="d8466229-68b8-46ef-9cb0-2fd67875e716" data-domains="typevoice.ai,www.typevoice.ai" data-exclude-search="true"></script><script src="site.js?v=34" defer></script></head>
+<link rel="stylesheet" href="site.css?v=51"><script defer src="https://warplabs-umami.up.railway.app/script.js" data-website-id="d8466229-68b8-46ef-9cb0-2fd67875e716" data-domains="typevoice.ai,www.typevoice.ai" data-exclude-search="true"></script><script src="site.js?v=35" defer></script></head>
 <body>
 <div class="glow" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
@@ -45,36 +45,41 @@
       <p>Cloud dictation is that, for your voice — and voice gives away more: how you sound today, what you said before the key, who was in the room.</p>
       <p><span data-brand="name">TypeVoice</span> never sends a syllable anywhere. Speech becomes text on the Neural Engine, the words go into your app, and that's the whole trip. <a href="https://github.com/warplabshq/typevoice" target="_blank" rel="noopener">The code is open</a>, so you don't have to take our word for it.</p>
     </div>
-    <div class="flow" aria-label="Your voice becomes text inside your Mac; nothing is sent to the internet">
-      <div class="mac">
-        <span class="mac-title">Your Mac</span>
-        <div class="pipe">
-          <div class="node">
-            <div class="mpill"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-            <small>Your voice</small>
-          </div>
-          <div class="wire"><span class="fly wave"><i></i><i></i><i></i><i></i><i></i></span></div>
-          <div class="node"><div class="tile-n"><b>Neural Engine</b></div><small>recognition</small></div>
-          <div class="wire"><span class="fly rough">um so can</span></div>
-          <div class="node"><div class="tile-n ai"><b>Apple Intelligence</b></div><small>cleanup</small></div>
-          <div class="wire"><span class="fly clean">So, can</span></div>
-          <div class="node"><div class="mfield"><span id="flow-typed"></span><i class="caret"></i></div><small>Your app</small></div>
+    <div class="pflow" role="group" aria-label="Your voice becomes text inside your Mac: the Neural Engine recognises it, Apple Intelligence tidies it, and it is typed into your app. Nothing is sent to the internet.">
+      <div class="pf-mac">
+        <div class="pf-head">
+          <span class="pf-title"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="2"/><path d="M2 19h20"/></svg>Your Mac</span>
+          <span class="pf-badge"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Works with Wi-Fi off</span>
         </div>
+        <ol class="pf-steps">
+          <li>
+            <div class="pf-node"><div class="pf-pill" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <b>Your voice</b><small>while you hold a key</small>
+            <span class="pf-dot" aria-hidden="true"></span>
+          </li>
+          <li>
+            <div class="pf-node"><div class="pf-tile"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9.5 2.5v3.5M14.5 2.5v3.5M9.5 18v3.5M14.5 18v3.5M2.5 9.5H6M2.5 14.5H6M18 9.5h3.5M18 14.5h3.5"/></svg>Neural Engine</div></div>
+            <b>Recognition</b><small>speech to words</small>
+            <span class="pf-dot" aria-hidden="true"></span>
+          </li>
+          <li>
+            <div class="pf-node"><div class="pf-tile ai"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>Apple Intelligence</div></div>
+            <b>Cleanup</b><small>punctuation, fillers</small>
+            <span class="pf-dot" aria-hidden="true"></span>
+          </li>
+          <li>
+            <div class="pf-node"><div class="pf-field"><span></span><i class="caret"></i></div></div>
+            <b>Your app</b><small>typed at the caret</small>
+          </li>
+        </ol>
       </div>
-      <div class="out">
-        <div class="wire dashed"><span class="barrier">no voice, no text</span></div>
-        <div class="node">
-          <div class="cloud-n"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.3 8.6 4.5 4.5 0 0 0 7 18z"/></svg></div>
-          <small>Internet</small>
-          <em>model download, once<br>update &amp; license checks</em>
-        </div>
-      </div>
+      <p class="pf-net"><span class="pf-off" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.3 8.6 4.5 4.5 0 0 0 7 18z"/><path d="M4 4l16 16"/></svg></span><span><b>No voice and no text go online.</b> Only the speech model (once), update checks, your price and your key. <a href="/privacy">The list</a></span></p>
     </div>
     <div class="priv-grid">
-      <div><h3>Recognition on-device</h3><p>Audio is gone the moment it's text.</p></div>
-      <div><h3>Cleanup on-device</h3><p>Apple Intelligence, on this Mac only.</p></div>
-      <div><h3>Four network calls, ever</h3><p>Model download, update check, your country's price, your key. <a href="/privacy">The list.</a></p></div>
-      <div><h3>Open source, GPL v3</h3><p>Read it, build it, or watch it with a firewall.</p></div>
+      <div><span class="pg-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><h3>Recognition on-device</h3><p>Audio is gone the moment it's text.</p></div>
+      <div><span class="pg-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></svg></span><h3>Cleanup on-device</h3><p>Apple Intelligence, on this Mac only.</p></div>
+      <div><span class="pg-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h3>No account, no telemetry</h3><p>Nothing to sign up for, nothing counted about you.</p></div>
+      <div><span class="pg-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"/></svg></span><h3>Open source, GPL v3</h3><p>Read it, build it, or watch it with a firewall.</p></div>
     </div>
   </section>
   <section class="section reveal" id="how">
