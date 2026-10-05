@@ -139,9 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Bars: a fixed pitch, heights from a slow syllable-like envelope keyed to world position,
     // so the same bar keeps its height as it travels.
     const ctx = tkIn.getContext("2d"), bw = 4, gap = 4.5, pitch = bw + gap;
-    const color = getComputedStyle(document.documentElement).getPropertyValue("--tk-bar").trim() || "#8fb5f7";
+    const css = getComputedStyle(document.documentElement);
+    const color = css.getPropertyValue("--tk-bar").trim() || "#8fb5f7", near = css.getPropertyValue("--c-green").trim() || "#5fd68a";
+    let grad = null;
     let W = 0, H = 0, dpr = 1;
-    const size = () => { dpr = window.devicePixelRatio || 1; W = tkIn.clientWidth; H = tkIn.clientHeight; tkIn.width = W * dpr; tkIn.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    const size = () => { dpr = window.devicePixelRatio || 1; W = tkIn.clientWidth; H = tkIn.clientHeight; tkIn.width = W * dpr; tkIn.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      grad = ctx.createLinearGradient(0, 0, W, 0); grad.addColorStop(0, color); grad.addColorStop(.55, color); grad.addColorStop(1, near); };
     size(); addEventListener("resize", size);
     const env = (k) => { // k = bar index in world space; gentle speech rhythm, never silent
       const syl = 0.5 + 0.5 * Math.sin(k * 0.55);                 // syllables
@@ -155,11 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (tkIn.closest(".offscreen")) { requestAnimationFrame(frame); return; }
       const off = reduced ? 0 : ((now - t0) / 1000) * speed;  // px travelled to the right
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = color;
-      const first = Math.floor(-off / pitch) - 1, maxH = H * 0.5;
+      ctx.fillStyle = grad || color;
+      // The cursor is a second voice: bars swell under it, and pressing the mouse makes the whole stream talk.
+      const tk = window.__tk || { x: -1e4, near: 0, talk: 0 };
+      tk.nearS = (tk.nearS || 0) + ((tk.near || 0) - (tk.nearS || 0)) * 0.12; tk.talkS = (tk.talkS || 0) + ((tk.talk || 0) - (tk.talkS || 0)) * 0.1;
+      const first = Math.floor(-off / pitch) - 1, maxH = H * 0.5, ts = now / 1000;
       for (let k = first; ; k++) {
         const x = k * pitch + off; if (x > W) break; if (x + bw < 0) continue;
-        const h = Math.max(3, env(k) * maxH);
+        const dx = x - tk.x, swell = tk.nearS * 1.25 * Math.exp(-dx * dx / 5000);
+        const talk = tk.talkS * (0.45 + 0.55 * Math.abs(Math.sin(ts * 9 + k * 0.7)));
+        const h = Math.max(3, Math.min(H * 0.96, env(k) * maxH * (1 + swell + talk)));
         ctx.beginPath(); ctx.roundRect(x, H / 2 - h / 2, bw, h, bw / 2); ctx.fill();
       }
       requestAnimationFrame(frame);
@@ -359,3 +367,165 @@ document.addEventListener("DOMContentLoaded", () => {
       el.textContent = (decimals ? v.toFixed(decimals) : Math.round(v).toLocaleString()) + suffix; if (p < 1) requestAnimationFrame(step); else el.dataset.done = "1"; })(t0);
   }
 });
+
+// ───────────── Motion: the hero, the three promises, cursor light, magnetic buttons ─────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // Hero: the aurora leans toward the pointer, the dot grid lights around it, the waveform listens.
+  const hero = document.querySelector(".hero2"), bg = hero && hero.querySelector(".hero-bg"), tkIn = document.getElementById("tk-in");
+  if (hero && bg) {
+    window.__tk = { x: -1e4, near: 0, talk: 0 };
+    const p = { x: 0, y: 0, tx: 0, ty: 0, on: false };
+    addEventListener("pointermove", (e) => {
+      const r = bg.getBoundingClientRect(); p.tx = e.clientX - r.left; p.ty = e.clientY - r.top; p.on = e.clientY < r.bottom;
+      if (tkIn) { const t = tkIn.getBoundingClientRect(), cy = t.top + t.height / 2; __tk.x = e.clientX - t.left; __tk.near = Math.max(0, 1 - Math.abs(e.clientY - cy) / 260) * (e.clientX < t.right + 40 ? 1 : 0); }
+    }, { passive: true });
+    const talk = (on) => { __tk.talk = on ? 1 : 0; hero.classList.toggle("talking", on); };
+    hero.addEventListener("pointerdown", (e) => { if (!e.target.closest("a, button")) talk(true); });
+    addEventListener("pointerup", () => talk(false)); addEventListener("pointercancel", () => talk(false));
+    if (!reduced) (function loop() {
+      if (!hero.classList.contains("offscreen")) {
+        p.x = lerp(p.x, p.tx, 0.08); p.y = lerp(p.y, p.ty, 0.08);
+        const r = bg.getBoundingClientRect();
+        bg.style.setProperty("--px", p.x + "px"); bg.style.setProperty("--py", p.y + "px");
+        bg.style.setProperty("--ax", (p.x - r.width / 2).toFixed(1)); bg.style.setProperty("--ay", (p.y - r.height / 2).toFixed(1));
+      }
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  // Cursor light on cards, a gentle tilt on the promises.
+  const SPOT = ".tile-b, .gcard, .step, .rapp, .choose > div, .price-card, .cost-card, .cmp-card, .quick a, .priv-grid > div, .pillar, .pflow";
+  document.querySelectorAll(SPOT).forEach((el) => el.classList.add("spot"));
+  if (fine) document.addEventListener("pointermove", (e) => {
+    const el = e.target.closest && e.target.closest(".spot"); if (!el) return;
+    const r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    el.style.setProperty("--mx", x + "px"); el.style.setProperty("--my", y + "px");
+    if (el.classList.contains("pillar") && !reduced) el.style.transform = `perspective(1200px) rotateX(${((0.5 - y / r.height) * 5).toFixed(2)}deg) rotateY(${((x / r.width - 0.5) * 5).toFixed(2)}deg)`;
+  }, { passive: true });
+  document.querySelectorAll(".pillar").forEach((el) => el.addEventListener("pointerleave", () => { el.style.transform = ""; }));
+
+  // Magnetic buttons: the big CTAs lean toward the pointer.
+  if (fine && !reduced) document.querySelectorAll(".cta").forEach((b) => {
+    b.addEventListener("pointermove", (e) => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1)}px)`; });
+    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
+  });
+
+  // 01 Private: words drift inside your Mac and bounce off its edge. The internet is right there, unreachable.
+  const vault = document.getElementById("vault");
+  if (vault) {
+    const card = vault.closest(".pillar"), ctx = vault.getContext("2d"), wifi = document.getElementById("wifi");
+    const css = getComputedStyle(document.documentElement), G = css.getPropertyValue("--c-green").trim(), TXT = css.getPropertyValue("--text").trim(), LINE = css.getPropertyValue("--line2").trim(), CARD = css.getPropertyValue("--card2").trim(), FAINT = css.getPropertyValue("--faint").trim();
+    const WORDS = ["meeting notes", "salary", "Sam's number", "diagnosis", "the launch", "invoice #482", "love you", "NDA draft", "password?", "Wednesday 3pm", "therapy", "the new idea"];
+    let W = 0, H = 0, S = null, words = [], hits = [], mouse = { x: -1e4, y: -1e4 }, offline = false;
+    const font = "500 12.5px -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif";
+    function size() {
+      const dpr = devicePixelRatio || 1; W = vault.clientWidth; H = vault.clientHeight; vault.width = W * dpr; vault.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const sw = Math.min(W * 0.86, 480), sh = Math.min(sw * 0.8, H - 160); S = { x: (W - sw) / 2, y: Math.max(78, (H - sh) / 2 + 4), w: sw, h: sh };
+      ctx.font = font;
+      if (!words.length) words = WORDS.slice(0, W < 420 ? 8 : 12).map((t, i) => { const w = ctx.measureText(t).width + 20, a = i * 2.4;
+        return { t, w, h: 26, x: S.x + 20 + ((i * 97) % Math.max(1, sw - w - 40)), y: S.y + 20 + ((i * 53) % Math.max(1, sh - 66)), vx: Math.cos(a) * (22 + i % 4 * 7), vy: Math.sin(a) * (18 + i % 3 * 8) }; });
+      else words.forEach((b) => { b.x = Math.min(Math.max(b.x, S.x + 8), S.x + S.w - b.w - 8); b.y = Math.min(Math.max(b.y, S.y + 8), S.y + S.h - b.h - 8); });
+    }
+    size(); addEventListener("resize", size);
+    card.addEventListener("pointermove", (e) => { const r = vault.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    card.addEventListener("pointerleave", () => { mouse.x = mouse.y = -1e4; });
+    wifi.addEventListener("click", () => { offline = !offline; wifi.setAttribute("aria-pressed", offline); wifi.querySelector(".wl").textContent = offline ? "Wi‑Fi off" : "Wi‑Fi on"; card.classList.toggle("offline", offline); });
+    let last = performance.now();
+    function frame(now) {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (!card.closest(".offscreen") && !document.hidden) {
+        ctx.clearRect(0, 0, W, H);
+        // The blocked path to the internet: a dashed line from the screen to the cloud, cut in the middle.
+        const cx = W - 48, cy = 62, sx = S.x + S.w * 0.72, sy = S.y - 4, qx = cx - 10, qy = sy - 6;
+        ctx.save(); ctx.globalAlpha = offline ? 0.12 : 0.55; ctx.setLineDash([3, 5]); ctx.strokeStyle = FAINT; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo(qx, qy, cx, cy); ctx.stroke(); ctx.setLineDash([]);
+        const mx = 0.25 * sx + 0.5 * qx + 0.25 * cx, my = 0.25 * sy + 0.5 * qy + 0.25 * cy; ctx.strokeStyle = "#ff6b6b"; ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(mx - 5, my - 5); ctx.lineTo(mx + 5, my + 5); ctx.moveTo(mx + 5, my - 5); ctx.lineTo(mx - 5, my + 5); ctx.stroke(); ctx.restore();
+        // The Mac: a screen with a glowing edge, and its base.
+        const glow = 10 + 6 * Math.sin(now / 900);
+        ctx.save(); ctx.shadowColor = G; ctx.shadowBlur = glow; ctx.strokeStyle = G; ctx.lineWidth = 1.6; ctx.globalAlpha = 0.9;
+        ctx.beginPath(); ctx.roundRect(S.x, S.y, S.w, S.h, 14); ctx.stroke(); ctx.restore();
+        ctx.fillStyle = LINE; ctx.beginPath(); ctx.roundRect(S.x - 22, S.y + S.h + 8, S.w + 44, 8, [2, 2, 8, 8]); ctx.fill();
+        ctx.fillStyle = G; ctx.font = "600 10.5px -apple-system, system-ui, sans-serif"; ctx.textAlign = "center"; ctx.globalAlpha = 0.9;
+        ctx.fillText(offline ? "OFFLINE · STILL TYPING" : "YOUR MAC · NOTHING LEAVES", S.x + S.w / 2, S.y + S.h + 36); ctx.globalAlpha = 1; ctx.textAlign = "left";
+        // Words: drift, shy away from the cursor, bounce off the edge with a flash, and never pile up.
+        ctx.font = font;
+        for (let i = 0; i < words.length; i++) for (let j = i + 1; j < words.length; j++) {
+          const a = words[i], b = words[j], ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x) + 6, oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y) + 6;
+          if (ox <= 0 || oy <= 0) continue;
+          if (ox < oy) { const d = (a.x < b.x ? -1 : 1) * ox / 2; a.x += d; b.x -= d; const t = a.vx; a.vx = b.vx; b.vx = t; }
+          else { const d = (a.y < b.y ? -1 : 1) * oy / 2; a.y += d; b.y -= d; const t = a.vy; a.vy = b.vy; b.vy = t; }
+        }
+        for (const b of words) {
+          const dx = b.x + b.w / 2 - mouse.x, dy = b.y + b.h / 2 - mouse.y, d2 = dx * dx + dy * dy;
+          if (d2 < 9000) { const f = (1 - d2 / 9000) * 260 * dt; const d = Math.sqrt(d2) || 1; b.vx += dx / d * f; b.vy += dy / d * f; }
+          const sp = Math.hypot(b.vx, b.vy), cap = 90, base = 26; if (sp > cap) { b.vx *= cap / sp; b.vy *= cap / sp; } else if (sp > base) { b.vx *= 0.99; b.vy *= 0.99; }
+          if (!reduced) { b.x += b.vx * dt; b.y += b.vy * dt; }
+          const L = S.x + 8, R = S.x + S.w - 8 - b.w, T = S.y + 8, B = S.y + S.h - 8 - b.h;
+          if (b.x < L) { b.x = L; b.vx = Math.abs(b.vx); hits.push({ x: S.x, y: b.y + b.h / 2, t: now }); }
+          if (b.x > R) { b.x = R; b.vx = -Math.abs(b.vx); hits.push({ x: S.x + S.w, y: b.y + b.h / 2, t: now }); }
+          if (b.y < T) { b.y = T; b.vy = Math.abs(b.vy); hits.push({ x: b.x + b.w / 2, y: S.y, t: now }); }
+          if (b.y > B) { b.y = B; b.vy = -Math.abs(b.vy); hits.push({ x: b.x + b.w / 2, y: S.y + S.h, t: now }); }
+          ctx.fillStyle = CARD; ctx.strokeStyle = LINE; ctx.lineWidth = 1; ctx.beginPath(); ctx.roundRect(b.x, b.y, b.w, b.h, 13); ctx.fill(); ctx.stroke();
+          ctx.fillStyle = TXT; ctx.globalAlpha = 0.86; ctx.fillText(b.t, b.x + 10, b.y + 17); ctx.globalAlpha = 1;
+        }
+        hits = hits.filter((h) => now - h.t < 700);
+        for (const h of hits) { const k = (now - h.t) / 700; ctx.save(); ctx.globalAlpha = (1 - k) * 0.8; ctx.strokeStyle = G; ctx.lineWidth = 2; ctx.shadowColor = G; ctx.shadowBlur = 12;
+          ctx.beginPath(); ctx.arc(h.x, h.y, 4 + k * 22, 0, Math.PI * 2); ctx.stroke(); ctx.restore(); }
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // 02 Instant: typing vs talking, the same sentence.
+  const race = document.getElementById("race");
+  if (race) {
+    const S = "Can we move the launch review to Wednesday at 3?", tType = document.getElementById("race-type"), tVoice = document.getElementById("race-voice");
+    const cT = document.getElementById("clock-type"), cV = document.getElementById("clock-voice");
+    const TALK = 2.6, LAG = 0.3, CPS = 3.4, LOOP = 9.5; let t0 = performance.now();
+    tVoice.textContent = S;
+    (function tick(now) {
+      if (!race.closest(".offscreen")) {
+        let t = (now - t0) / 1000; if (t > LOOP) { t0 = now; t = 0; }
+        const n = Math.min(S.length, Math.floor(t * CPS)); tType.textContent = S.slice(0, n);
+        tType.parentNode.scrollLeft = 1e4;
+        cT.textContent = Math.min(t, LOOP).toFixed(1) + "s";
+        const done = t >= TALK + LAG; race.classList.toggle("talk", t < TALK); race.classList.toggle("done", done);
+        cV.textContent = (done ? TALK + LAG : t).toFixed(1) + "s";
+      } else t0 = now - 0;
+      requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  // 03 Yours: scrub through five years of a $12 subscription; TypeVoice stays at $79.
+  const scrub = document.getElementById("scrub");
+  if (scrub) {
+    const M = 60, PER = 12, ONCE = 79, MAX = M * PER, X = (m) => (m - 1) / (M - 1) * 600, Y = (v) => 210 - v / MAX * 196;
+    const sub = document.getElementById("sc-sub"), area = document.getElementById("sc-area"), xl = document.getElementById("sc-x");
+    scrub.querySelector(".sc-tv").setAttribute("d", `M0 ${Y(ONCE).toFixed(1)}H600`);
+    const cross = document.getElementById("sc-cross"), BE = Math.ceil(ONCE / PER);   // the month it has paid for itself
+    cross.style.setProperty("--cx", (X(BE) / 600 * 100) + "%"); cross.style.setProperty("--cy", (Y(ONCE) / 220 * 100) + "%");
+    const mEl = document.getElementById("sc-m"), vEl = document.getElementById("sc-sub-v");
+    let cur = 1, target = 1, hovering = false;
+    function draw(m) {
+      const k = Math.max(1, Math.min(M, Math.round(m))); let d = `M0 ${Y(PER).toFixed(1)}`;
+      for (let i = 2; i <= k; i++) d += `H${X(i).toFixed(1)}V${Y(i * PER).toFixed(1)}`;
+      const xe = X(m); d += `H${xe.toFixed(1)}`;
+      sub.setAttribute("d", d); area.setAttribute("d", d + `V220H0Z`); xl.setAttribute("x1", xe); xl.setAttribute("x2", xe);
+      mEl.textContent = k >= 12 ? `Year ${Math.floor((k - 1) / 12) + 1}, month ${((k - 1) % 12) + 1}` : `Month ${k}`;
+      vEl.textContent = "$" + (k * PER).toLocaleString();
+      cross.classList.toggle("on", k >= BE);
+    }
+    const setFrom = (e) => { const r = scrub.getBoundingClientRect(), f = Math.min(1, Math.max(0, (e.clientX - r.left - 30) / (r.width - 60))); target = 1 + f * (M - 1); };
+    scrub.addEventListener("pointerenter", () => { hovering = true; }); scrub.addEventListener("pointermove", setFrom);
+    scrub.addEventListener("pointerleave", () => { hovering = false; target = M; });
+    let started = false;
+    new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting && !started) { started = true; target = M; } }), { threshold: 0.4 }).observe(scrub);
+    draw(1);
+    (function tick() { const speed = hovering ? 0.2 : 0.035; if (Math.abs(target - cur) > 0.01) { cur = reduced ? target : lerp(cur, target, speed); draw(cur); } requestAnimationFrame(tick); })();
+  }
+});
+

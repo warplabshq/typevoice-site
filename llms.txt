@@ -1,0 +1,26 @@
+# TypeVoice
+
+> TypeVoice is a dictation app for Mac: hold a key, talk, and clean, punctuated text is typed into whatever app you're using. Speech recognition and cleanup run entirely on the Mac (Neural Engine, Apple Intelligence); no audio or text is sent anywhere, and it works offline. Open source (GPL v3). $79 once after a 7-day free trial, no subscription, no account.
+
+Made by Priyam Ventures. macOS 26 or later on Apple silicon. English, all accents.
+
+## Product
+- [Home](https://typevoice.ai/): what it does, features, pricing, FAQ
+- [TypeVoice vs Wispr Flow](https://typevoice.ai/vs/wispr-flow): on-device vs cloud, price over time, feature table
+- [TypeVoice for AI coding](https://typevoice.ai/for/ai-coding): dictating prompts into Claude Code, Cursor, ChatGPT and terminals
+- [Best dictation apps for Mac (2026)](https://typevoice.ai/best-dictation-apps-mac): eight apps compared, price, privacy, who each is for
+- [Wispr Flow alternatives](https://typevoice.ai/alternatives/wispr-flow): Mac dictation apps that work offline
+- [TypeVoice vs Superwhisper](https://typevoice.ai/vs/superwhisper), [vs MacWhisper](https://typevoice.ai/vs/macwhisper), [vs VoiceInk](https://typevoice.ai/vs/voiceink), [vs Apple Dictation](https://typevoice.ai/vs/apple-dictation)
+- [Support](https://typevoice.ai/support): setup, troubleshooting, licenses, Dictionary tips
+- [Changelog](https://typevoice.ai/changelog): every release
+
+## Facts
+- Price: $79 one-time (personal, 2 Macs); $299 one-time team key (5 people, 2 Macs each); 7-day free trial without a card; 14-day refund.
+- Privacy: recognition on-device; the only network calls are a one-time model download, update checks, a country price lookup and license checks. No telemetry.
+- Notable features: push-to-talk or hands-free; voice notes you can drag into chats; a Dictionary matched by sound; an optional note appended to every dictation for AI coding assistants ("dictated; spellings may be off"); question marks, lists, numbers and filler removal by rule.
+- Source: https://github.com/warplabshq/typevoice
+
+## Legal
+- [Privacy Policy](https://typevoice.ai/privacy)
+- [Terms](https://typevoice.ai/terms)
+- [License Agreement](https://typevoice.ai/eula)
