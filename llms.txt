@@ -11,6 +11,7 @@ Made by Priyam Ventures. macOS 26 or later on Apple silicon. English, all accent
 - [Best dictation apps for Mac (2026)](https://typevoice.ai/best-dictation-apps-mac): eight apps compared, price, privacy, who each is for
 - [Wispr Flow alternatives](https://typevoice.ai/alternatives/wispr-flow): Mac dictation apps that work offline
 - [TypeVoice vs Superwhisper](https://typevoice.ai/vs/superwhisper), [vs MacWhisper](https://typevoice.ai/vs/macwhisper), [vs VoiceInk](https://typevoice.ai/vs/voiceink), [vs Apple Dictation](https://typevoice.ai/vs/apple-dictation)
+- [How to dictate on a Mac](https://typevoice.ai/guides/dictate-on-mac): turning on built-in Dictation, voice commands, limits
 - [Support](https://typevoice.ai/support): setup, troubleshooting, licenses, Dictionary tips
 - [Changelog](https://typevoice.ai/changelog): every release
 
