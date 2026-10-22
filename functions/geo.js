@@ -4,10 +4,6 @@
 // change one, change the other. Everyone else pays the list price, converted at checkout.
 const PRICES = {
   IN: { currency: "INR", personal: 599, team: 2399, tax: "GST" },
-  PK: { currency: "USD", personal: 5.99, team: 24, tax: "tax" },
-  BD: { currency: "USD", personal: 5.99, team: 24, tax: "tax" },
-  EG: { currency: "USD", personal: 5.99, team: 24, tax: "tax" },
-  NG: { currency: "USD", personal: 5.99, team: 24, tax: "tax" },
 };
 
 export function onRequestGet({ request }) {
@@ -16,6 +12,6 @@ export function onRequestGet({ request }) {
   const country = (url.searchParams.get("c") || request.cf?.country || "").toUpperCase();
   const body = PRICES[country] ? { country, ...PRICES[country] } : { country };
   return new Response(JSON.stringify(body), {
-    headers: { "content-type": "application/json", "cache-control": "private, max-age=3600" },
+    headers: { "content-type": "application/json", "cache-control": "no-store" },
   });
 }

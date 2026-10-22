@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // when there is one; Dodo charges exactly that at checkout, by billing country (plus tax).
   const priceTag = document.querySelector(".price-tag");
   if (priceTag && window.fetch) {
-    fetch("/geo" + location.search).then(r => r.ok ? r.json() : null).then(g => {
+    fetch("/geo" + location.search, { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(g => {
       if (!g || !g.personal) return;
       const money = (n) => { try { return new Intl.NumberFormat("en", { style: "currency", currency: g.currency, minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(n); } catch (_) { return g.currency + " " + n; } };
       // Just the flag, no country name: "you're in 🇮🇳" is enough. Windows has no flag glyphs
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
       priceTag.querySelector("small").innerHTML = `<span class="offer"><span>${flag}</span>A special price for you</span><br>once, plus ${g.tax}`;
       const tp = document.getElementById("team-price"); if (tp) tp.innerHTML = `${p2} <s>$79</s>`;
       const note = document.getElementById("price-note"); if (note) note.textContent =
-        `${flag} You're in one of the few places with a special price; the checkout applies it by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
+        `${flag} A special price for India; the checkout applies it by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
       const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · ${flag} ${p1} once`;
       if (window.umami && umami.track) umami.track("regional-price", { country: g.country });
     }).catch(() => {});
