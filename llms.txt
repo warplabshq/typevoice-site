@@ -1,6 +1,6 @@
 # TypeVoice
 
-> TypeVoice is a dictation app for Mac: hold a key, talk, and clean, punctuated text is typed into whatever app you're using. Speech recognition and cleanup run entirely on the Mac (Neural Engine, Apple Intelligence); no audio or text is sent anywhere, and it works offline. Open source (GPL v3). $79 once after a 7-day free trial, no subscription, no account.
+> TypeVoice is a dictation app for Mac: hold a key, talk, and clean, punctuated text is typed into whatever app you're using. Speech recognition and cleanup run entirely on the Mac (Neural Engine, Apple Intelligence); no audio or text is sent anywhere, and it works offline. Open source (GPL v3). $19.99 once after a 7-day free trial, no subscription, no account.
 
 Made by Priyam Ventures. macOS 26 or later on Apple silicon. English, all accents.
 
@@ -16,7 +16,7 @@ Made by Priyam Ventures. macOS 26 or later on Apple silicon. English, all accent
 - [Changelog](https://typevoice.ai/changelog): every release
 
 ## Facts
-- Price: $79 one-time (personal, 2 Macs); $299 one-time team key (5 people, 2 Macs each); 7-day free trial without a card; 14-day refund.
+- Price: $19.99 one-time (personal, 1 Mac); $79 one-time team key (5 people, 1 Mac each); 7-day free trial without a card; 14-day refund.
 - Privacy: recognition on-device; the only network calls are a one-time model download, update checks, a country price lookup and license checks. No telemetry.
 - Notable features: push-to-talk or hands-free; voice notes you can drag into chats; a Dictionary matched by sound; an optional note appended to every dictation for AI coding assistants ("dictated; spellings may be off"); question marks, lists, numbers and filler removal by rule.
 - Source: https://github.com/warplabshq/typevoice

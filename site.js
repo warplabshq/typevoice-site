@@ -14,12 +14,12 @@ window.SITE = {
   // Dodo Payments products (live). Test-mode twins: pdt_0Nnye4FRV4gyNve43FkdY / pdt_0Nnye4HFHXLRKq4WkVJXG on test.checkout.dodopayments.com.
   checkoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIUl5lH6A5vMnNQl0",
   updated: "September 26, 2026",
-  price: "$79",
+  price: "$19.99",
   priceNote: "once, after 7 free days",
   refundDays: "14",
-  macLimit: "2",            // activations limit on the personal key (a desk Mac and a laptop)
-  teamSeats: "5",           // the team key: one key, teamSeats people, 2 Macs each (activations limit 10)
-  teamPrice: "$299",
+  macLimit: "1",            // activations limit on the personal key
+  teamSeats: "5",           // the team key: one key, teamSeats people, one Mac each (activations limit 5)
+  teamPrice: "$79",
   teamCheckoutURL: "https://checkout.dodopayments.com/buy/pdt_0NnyeIYh7eg5s2udMzUGZ",
   jurisdiction: "India",
   address: "",              // postal address; shown after the company name once set
@@ -180,15 +180,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (priceTag && window.fetch) {
     fetch("/geo" + location.search).then(r => r.ok ? r.json() : null).then(g => {
       if (!g || !g.personal) return;
-      const money = (n) => { try { return new Intl.NumberFormat("en", { style: "currency", currency: g.currency, maximumFractionDigits: 0 }).format(n); } catch (_) { return g.currency + " " + n; } };
+      const money = (n) => { try { return new Intl.NumberFormat("en", { style: "currency", currency: g.currency, minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(n); } catch (_) { return g.currency + " " + n; } };
       // Just the flag, no country name: "you're in 🇮🇳" is enough. Windows has no flag glyphs
       // and would show "IN", so it gets the plain price instead.
       if (!/^[A-Z]{2}$/.test(g.country) || /Win/.test(navigator.platform)) return;
       const flag = String.fromCodePoint(...[...g.country].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
       const p1 = money(g.personal), p2 = money(g.team);
-      priceTag.querySelector("span").innerHTML = `${p1} <s>$79</s>`;
+      priceTag.querySelector("span").innerHTML = `${p1} <s>$19.99</s>`;
       priceTag.querySelector("small").innerHTML = `<span class="offer"><span>${flag}</span>A special price for you</span><br>once, plus ${g.tax}`;
-      const tp = document.getElementById("team-price"); if (tp) tp.innerHTML = `${p2} <s>$299</s>`;
+      const tp = document.getElementById("team-price"); if (tp) tp.innerHTML = `${p2} <s>$79</s>`;
       const note = document.getElementById("price-note"); if (note) note.textContent =
         `${flag} You're in one of the few places with a special price; the checkout applies it by billing country. Payments by Dodo Payments · ${SITE.refundDays}-day money-back guarantee`;
       const fp = document.getElementById("final-price"); if (fp) fp.textContent = `Free for 7 days · ${flag} ${p1} once`;
@@ -373,45 +373,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches, fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
   const lerp = (a, b, t) => a + (b - a) * t;
 
-  // Hero: the aurora leans toward the pointer, the dot grid lights around it, the waveform listens.
-  const hero = document.querySelector(".hero2"), bg = hero && hero.querySelector(".hero-bg"), tkIn = document.getElementById("tk-in");
-  if (hero && bg) {
+  // Hero: the waveform listens. Bars swell under the pointer; press and hold to make it talk.
+  const hero = document.querySelector(".hero2"), tkIn = document.getElementById("tk-in");
+  if (hero && tkIn) {
     window.__tk = { x: -1e4, near: 0, talk: 0 };
-    const p = { x: 0, y: 0, tx: 0, ty: 0, on: false };
     addEventListener("pointermove", (e) => {
-      const r = bg.getBoundingClientRect(); p.tx = e.clientX - r.left; p.ty = e.clientY - r.top; p.on = e.clientY < r.bottom;
-      if (tkIn) { const t = tkIn.getBoundingClientRect(), cy = t.top + t.height / 2; __tk.x = e.clientX - t.left; __tk.near = Math.max(0, 1 - Math.abs(e.clientY - cy) / 260) * (e.clientX < t.right + 40 ? 1 : 0); }
+      const t = tkIn.getBoundingClientRect(), cy = t.top + t.height / 2;
+      __tk.x = e.clientX - t.left; __tk.near = Math.max(0, 1 - Math.abs(e.clientY - cy) / 260) * (e.clientX < t.right + 40 ? 1 : 0);
     }, { passive: true });
     const talk = (on) => { __tk.talk = on ? 1 : 0; hero.classList.toggle("talking", on); };
     hero.addEventListener("pointerdown", (e) => { if (!e.target.closest("a, button")) talk(true); });
     addEventListener("pointerup", () => talk(false)); addEventListener("pointercancel", () => talk(false));
-    if (!reduced) (function loop() {
-      if (!hero.classList.contains("offscreen")) {
-        p.x = lerp(p.x, p.tx, 0.08); p.y = lerp(p.y, p.ty, 0.08);
-        const r = bg.getBoundingClientRect();
-        bg.style.setProperty("--px", p.x + "px"); bg.style.setProperty("--py", p.y + "px");
-        bg.style.setProperty("--ax", (p.x - r.width / 2).toFixed(1)); bg.style.setProperty("--ay", (p.y - r.height / 2).toFixed(1));
-      }
-      requestAnimationFrame(loop);
-    })();
   }
-
-  // Cursor light on cards, a gentle tilt on the promises.
-  const SPOT = ".tile-b, .gcard, .step, .rapp, .choose > div, .price-card, .cost-card, .cmp-card, .quick a, .priv-grid > div, .pillar, .pflow";
-  document.querySelectorAll(SPOT).forEach((el) => el.classList.add("spot"));
-  if (fine) document.addEventListener("pointermove", (e) => {
-    const el = e.target.closest && e.target.closest(".spot"); if (!el) return;
-    const r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    el.style.setProperty("--mx", x + "px"); el.style.setProperty("--my", y + "px");
-    if (el.classList.contains("pillar") && !reduced) el.style.transform = `perspective(1200px) rotateX(${((0.5 - y / r.height) * 5).toFixed(2)}deg) rotateY(${((x / r.width - 0.5) * 5).toFixed(2)}deg)`;
-  }, { passive: true });
-  document.querySelectorAll(".pillar").forEach((el) => el.addEventListener("pointerleave", () => { el.style.transform = ""; }));
-
-  // Magnetic buttons: the big CTAs lean toward the pointer.
-  if (fine && !reduced) document.querySelectorAll(".cta").forEach((b) => {
-    b.addEventListener("pointermove", (e) => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${((e.clientX - r.left - r.width / 2) * 0.18).toFixed(1)}px, ${((e.clientY - r.top - r.height / 2) * 0.3).toFixed(1)}px)`; });
-    b.addEventListener("pointerleave", () => { b.style.transform = ""; });
-  });
 
   // 01 Private: words drift inside your Mac and bounce off its edge. The internet is right there, unreachable.
   const vault = document.getElementById("vault");
@@ -500,10 +473,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })(t0);
   }
 
-  // 03 Yours: scrub through five years of a $12 subscription; TypeVoice stays at $79.
+  // 03 Yours: scrub through five years of a $12 subscription; TypeVoice stays at $19.99.
   const scrub = document.getElementById("scrub");
   if (scrub) {
-    const M = 60, PER = 12, ONCE = 79, MAX = M * PER, X = (m) => (m - 1) / (M - 1) * 600, Y = (v) => 210 - v / MAX * 196;
+    const M = 60, PER = 12, ONCE = 19.99, MAX = M * PER, X = (m) => (m - 1) / (M - 1) * 600, Y = (v) => 210 - v / MAX * 196;
     const sub = document.getElementById("sc-sub"), area = document.getElementById("sc-area"), xl = document.getElementById("sc-x");
     scrub.querySelector(".sc-tv").setAttribute("d", `M0 ${Y(ONCE).toFixed(1)}H600`);
     const cross = document.getElementById("sc-cross"), BE = Math.ceil(ONCE / PER);   // the month it has paid for itself
