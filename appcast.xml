@@ -3,15 +3,15 @@
     <channel>
         <title>TypeVoice</title>
         <item>
-            <title>1.0.23</title>
-            <pubDate>Fri, 23 Oct 2026 00:06:27 +0530</pubDate>
-            <sparkle:version>123</sparkle:version>
-            <sparkle:shortVersionString>1.0.23</sparkle:shortVersionString>
+            <title>1.0.24</title>
+            <pubDate>Tue, 27 Oct 2026 03:32:32 +0530</pubDate>
+            <sparkle:version>124</sparkle:version>
+            <sparkle:shortVersionString>1.0.24</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.23 — 23 October 2026</h1><ul><li>TypeVoice is now $19.99 for one Mac (a team key is $79 for five people), and the License tab shows the new prices.</li></ul>
+            <description><![CDATA[<!doctype html><meta charset=utf-8><style>body{font:14px/1.5 -apple-system,system-ui;color:#222;margin:16px 20px}h1{font-size:17px;margin:0 0 8px}li{margin:4px 0}@media(prefers-color-scheme:dark){body{color:#ddd;background:#1e1e1e}}</style><h1>TypeVoice 1.0.24 — 27 October 2026</h1><ul><li>A dictation is never typed twice: in browsers it could land once in the field and again as a paste.</li><li>If you switch to another tab or window while your words are being typed, they&#x27;re copied instead of landing in the wrong place.</li><li>Dictations that are copied instead of typed now show up in Recent like any other.</li></ul>
 ]]></description>
-            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.23/TypeVoice-1.0.23.zip" length="11755301" type="application/octet-stream" sparkle:edSignature="f9Bzv6FEXf2YNLRSbqRgmxttEEiBZjPaIW/mU2/dK8qQbbmJPa6KwCMDV8dcmyuISaDamT4J6eUVFhMtMA0zCg=="/>
+            <enclosure url="https://github.com/warplabshq/typevoice-releases/releases/download/v1.0.24/TypeVoice-1.0.24.zip" length="11757791" type="application/octet-stream" sparkle:edSignature="gsqsttimNE0Lc/sULAaxo63gEbUb0m8tQCXpbXwd2rkp4gILMDx5Wg6qOE9VMgW4VPnCbBfEplADZh2QAfk8Aw=="/>
         </item>
     </channel>
 </rss>
